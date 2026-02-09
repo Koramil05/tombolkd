@@ -1,803 +1,213 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<meta name="theme-color" content="#2E7D32" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="KDKMP Portal" />
-<meta name="mobile-web-app-capable" content="yes" />
-<meta name="msapplication-TileColor" content="#2E7D32" />
-<meta name="msapplication-tap-highlight" content="no" />
-<title>KDKMP Portal</title>
-
-<!-- Favicon & Apple Touch Icons -->
-<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg">
-<link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg">
-<link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg">
-<link rel="manifest" href="/site.webmanifest">
-
-<style>
-  * { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  html, body {
-    height: 100%;
-    overflow: hidden;
-    touch-action: manipulation;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  }
-
-  body {
-    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    min-height: -webkit-fill-available;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
-
-  /* Header */
-  .portal-header {
-    text-align: center;
-    margin-bottom: 30px;
-    z-index: 100;
-    max-width: 600px;
-    width: 100%;
-  }
-
-  .portal-logo {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #2E7D32, #4CAF50);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    box-shadow: 0 10px 30px rgba(46, 125, 50, 0.3);
-    animation: gentlePulse 3s infinite alternate;
-  }
-
-  .portal-logo svg {
-    width: 60px;
-    height: 60px;
-    fill: white;
-  }
-
-  .portal-title {
-    color: #4CAF50;
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 8px;
-    text-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
-    letter-spacing: 1.5px;
-  }
-
-  .portal-subtitle {
-    color: #A5D6A7;
-    font-size: 16px;
-    opacity: 0.9;
-    max-width: 400px;
-    margin: 0 auto;
-    line-height: 1.5;
-  }
-
-  /* Responsif untuk layar kecil */
-  @media (max-width: 768px) {
-    .portal-logo {
-      width: 100px;
-      height: 100px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KDKMP Portal - Akses Cepat</title>
     
-    .portal-logo svg {
-      width: 50px;
-      height: 50px;
-    }
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2E7D32">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="KDKMP Portal">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-TileColor" content="#2E7D32">
+    <meta name="description" content="Portal Akses Cepat Sistem KDKMP - Pemetaan Lahan dan Dashboard">
     
-    .portal-title {
-      font-size: 24px;
-    }
+    <!-- Favicon & Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg">
+    <link rel="manifest" href="manifest.json">
     
-    .portal-subtitle {
-      font-size: 14px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .portal-logo {
-      width: 80px;
-      height: 80px;
-    }
+    <!-- CSS External -->
+    <link rel="stylesheet" href="style.css">
     
-    .portal-logo svg {
-      width: 40px;
-      height: 40px;
-    }
-    
-    .portal-title {
-      font-size: 22px;
-    }
-    
-    body {
-      padding: 15px;
-    }
-  }
-
-  /* Grid untuk tombol */
-  .buttons-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-    max-width: 700px;
-    width: 100%;
-    z-index: 10;
-  }
-
-  /* Responsif grid */
-  @media (max-width: 768px) {
-    .buttons-grid {
-      gap: 20px;
-      max-width: 600px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .buttons-grid {
-      gap: 15px;
-      grid-template-columns: 1fr;
-      max-width: 350px;
-    }
-  }
-
-  /* Tombol */
-  .portal-button {
-    position: relative;
-    padding: 30px 20px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 20px;
-    border: none;
-    color: white;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 180px;
-    text-align: center;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  }
-
-  /* Tombol 1 - Pemetaan Lahan */
-  .portal-button:nth-child(1) {
-    background: linear-gradient(145deg, #2E7D32, #1B5E20);
-  }
-
-  /* Tombol 2 - Portal KDKMP */
-  .portal-button:nth-child(2) {
-    background: linear-gradient(145deg, #1565C0, #0D47A1);
-  }
-
-  .portal-button:hover { 
-    transform: translateY(-8px) scale(1.03); 
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3),
-                0 0 30px rgba(255, 255, 255, 0.1);
-  }
-
-  .portal-button:active {
-    transform: translateY(-4px) scale(1.01);
-    transition: 0.1s;
-  }
-
-  /* Icon dalam tombol */
-  .button-icon {
-    font-size: 48px;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
-    transition: all 0.3s ease;
-  }
-
-  .button-text {
-    font-size: 18px;
-    line-height: 1.3;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    margin-bottom: 8px;
-  }
-
-  .button-desc {
-    font-size: 13px;
-    opacity: 0.9;
-    font-weight: normal;
-    letter-spacing: 0.5px;
-    max-width: 90%;
-  }
-
-  @media (max-width: 768px) {
-    .portal-button {
-      padding: 25px 15px;
-      min-height: 160px;
-    }
-    
-    .button-icon {
-      font-size: 42px;
-      margin-bottom: 15px;
-    }
-    
-    .button-text {
-      font-size: 16px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .portal-button {
-      padding: 22px 12px;
-      min-height: 140px;
-    }
-    
-    .button-icon {
-      font-size: 36px;
-      margin-bottom: 12px;
-    }
-    
-    .button-text {
-      font-size: 15px;
-    }
-    
-    .button-desc {
-      font-size: 12px;
-    }
-  }
-
-  /* Control buttons */
-  .control-buttons {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    gap: 12px;
-    z-index: 1000;
-  }
-
-  .control-btn {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(46, 125, 50, 0.25);
-    border: 2px solid rgba(46, 125, 50, 0.6);
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: all 0.3s ease;
-  }
-
-  .control-btn:hover {
-    transform: scale(1.1);
-    background: rgba(46, 125, 50, 0.4);
-  }
-
-  /* Loading overlay */
-  .loading-overlay {
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    flex-direction: column;
-    gap: 25px;
-  }
-
-  .loading-overlay.hidden {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s, visibility 0.5s;
-  }
-
-  .loading-logo {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #2E7D32, #4CAF50);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: gentlePulse 2s infinite alternate;
-  }
-
-  .loading-logo svg {
-    width: 50px;
-    height: 50px;
-    fill: white;
-  }
-
-  @keyframes gentlePulse {
-    0% { 
-      transform: scale(1);
-      box-shadow: 0 0 20px rgba(46, 125, 50, 0.4);
-    }
-    100% { 
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(46, 125, 50, 0.6);
-    }
-  }
-
-  .loading-text {
-    color: #4CAF50;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    animation: gentlePulse 2s infinite alternate;
-    text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
-  }
-
-  /* Status bar untuk efek loading */
-  .status-bar {
-    width: 200px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-    overflow: hidden;
-    margin-top: 10px;
-  }
-
-  .status-progress {
-    width: 0%;
-    height: 100%;
-    background: linear-gradient(90deg, #4CAF50, #2E7D32);
-    border-radius: 2px;
-    transition: width 0.3s ease;
-  }
-
-  /* Background decoration */
-  .bg-decoration {
-    position: fixed;
-    inset: 0;
-    z-index: 1;
-    opacity: 0.1;
-    background-image: 
-      radial-gradient(circle at 20% 30%, #4CAF50 0%, transparent 20%),
-      radial-gradient(circle at 80% 70%, #1565C0 0%, transparent 20%),
-      radial-gradient(circle at 40% 80%, #2E7D32 0%, transparent 20%);
-    pointer-events: none;
-  }
-
-  /* Toast notification */
-  .toast {
-    position: fixed;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(46, 125, 50, 0.9);
-    color: white;
-    padding: 12px 24px;
-    border-radius: 25px;
-    font-size: 14px;
-    z-index: 1001;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .toast.show {
-    opacity: 1;
-    visibility: visible;
-    bottom: 90px;
-  }
-</style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
-<!-- Loading overlay -->
-<div class="loading-overlay" id="loadingOverlay">
-  <div class="loading-logo">
-    <svg viewBox="0 0 24 24">
-      <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M17,15V13H13.72C13.36,13.62 12.71,14 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10C12.71,10 13.36,10.38 13.72,11H17V9L20,12L17,15M9,8V10L6,7L9,4V6H13A2,2 0 0,1 15,8A2,2 0 0,1 13,10H9V12L6,9L9,6V8Z" />
-    </svg>
-  </div>
-  <div class="loading-text">KDKMP PORTAL</div>
-  <div class="status-bar">
-    <div class="status-progress" id="statusProgress"></div>
-  </div>
-</div>
+    <!-- Loading Screen -->
+    <div id="loading" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+            </div>
+            <div class="loading-text">
+                <h2>KDKMP PORTAL</h2>
+                <p>Memuat sistem...</p>
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- Toast notification -->
-<div class="toast" id="toast"></div>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
 
-<!-- Background decoration -->
-<div class="bg-decoration"></div>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-globe-asia"></i>
+                </div>
+                <div class="header-text">
+                    <h1 class="site-title">KDKMP PORTAL</h1>
+                    <p class="site-subtitle">Akses Cepat Sistem Pemetaan & Dashboard</p>
+                </div>
+            </div>
+            
+            <div class="header-controls">
+                <button id="themeToggle" class="control-btn" title="Ganti tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="fullscreenBtn" class="control-btn" title="Layar penuh">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <button id="installBtn" class="control-btn install-btn" title="Install aplikasi" style="display: none;">
+                    <i class="fas fa-download"></i>
+                </button>
+            </div>
+        </header>
 
-<!-- Header dengan logo -->
-<header class="portal-header">
-  <div class="portal-logo">
-    <svg viewBox="0 0 24 24">
-      <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M17,15V13H13.72C13.36,13.62 12.71,14 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10C12.71,10 13.36,10.38 13.72,11H17V9L20,12L17,15M9,8V10L6,7L9,4V6H13A2,2 0 0,1 15,8A2,2 0 0,1 13,10H9V12L6,9L9,6V8Z" />
-    </svg>
-  </div>
-  <h1 class="portal-title">KDKMP PORTAL</h1>
-  <p class="portal-subtitle">Akses cepat ke sistem Pemetaan Lahan dan Dashboard KDKMP</p>
-</header>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Stats Cards -->
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Pemetaan Lahan</h3>
+                        <p>Sistem verifikasi digital</p>
+                    </div>
+                    <div class="stat-badge">Aktif</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Dashboard</h3>
+                        <p>Monitoring real-time</p>
+                    </div>
+                    <div class="stat-badge">Online</div>
+                </div>
+            </div>
 
-<!-- Main container dengan grid tombol -->
-<main class="buttons-grid">
-  <button class="portal-button" id="btnPemetaan">
-    <span class="button-icon">🗺️</span>
-    <span class="button-text">Pemetaan Lahan</span>
-    <span class="button-desc">Verifikasi akses dan pemetaan lahan pertanian</span>
-  </button>
-  <button class="portal-button" id="btnPortal">
-    <span class="button-icon">📊</span>
-    <span class="button-text">Portal KDKMP</span>
-    <span class="button-desc">Dashboard utama sistem KDKMP</span>
-  </button>
-</main>
+            <!-- Main Buttons Grid -->
+            <div class="buttons-grid">
+                <button class="portal-btn primary-btn" id="btnPemetaan">
+                    <div class="btn-icon">
+                        <i class="fas fa-map"></i>
+                    </div>
+                    <div class="btn-content">
+                        <h3>PEMETAAN LAHAN</h3>
+                        <p>Akses sistem pemetaan lahan pertanian KDKMP untuk verifikasi dan monitoring</p>
+                        <div class="btn-meta">
+                            <span class="badge"><i class="fas fa-lock"></i> Secure</span>
+                            <span class="badge"><i class="fas fa-bolt"></i> Fast</span>
+                        </div>
+                    </div>
+                    <div class="btn-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </button>
 
-<!-- Control buttons -->
-<div class="control-buttons">
-  <button class="control-btn" id="infoBtn" title="Info" aria-label="Informasi">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-      <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,7H13V9H11V7M11,11H13V17H11V11Z"/>
-    </svg>
-  </button>
-  <button class="control-btn" id="fullscreenBtn" title="Fullscreen" aria-label="Mode layar penuh">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-      <path d="M5,5H10V7H7V10H5V5M14,5H19V10H17V7H14V5M17,14H19V19H14V17H17V14M10,17V19H5V14H7V17H10Z"/>
-    </svg>
-  </button>
-  <button class="control-btn" id="installBtn" title="Install App" aria-label="Instal aplikasi" style="display:none;">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-      <path d="M16,12L18,14H17V16H15V14H14L16,12M19.35,10.03C18.67,6.59 15.64,4 12,4C9.11,4 6.6,5.64 5.35,8.03C2.34,8.36 0,10.9 0,14A6,6 0 0,0 6,20H19A5,5 0 0,0 24,15C24,12.36 21.95,10.22 19.35,10.03M19,18H6A4,4 0 0,1 2,14C2,11.95 3.53,10.24 5.56,10.03L6.63,9.92L7.13,8.97C8.08,7.14 9.94,6 12,6C14.62,6 16.88,7.86 17.39,10.43L17.69,11.93L19.22,12.04C20.78,12.14 22,13.45 22,15A3,3 0 0,1 19,18Z"/>
-    </svg>
-  </button>
-</div>
+                <button class="portal-btn secondary-btn" id="btnPortal">
+                    <div class="btn-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="btn-content">
+                        <h3>PORTAL KDKMP</h3>
+                        <p>Dashboard utama untuk manajemen data dan analisis sistem KDKMP</p>
+                        <div class="btn-meta">
+                            <span class="badge"><i class="fas fa-database"></i> Data</span>
+                            <span class="badge"><i class="fas fa-chart-bar"></i> Analytics</span>
+                        </div>
+                    </div>
+                    <div class="btn-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </button>
+            </div>
 
-<script>
-// Inisialisasi variabel global
-const loadingOverlay = document.getElementById("loadingOverlay");
-const statusProgress = document.getElementById("statusProgress");
-const toast = document.getElementById("toast");
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h2 class="section-title">Aksi Cepat</h2>
+                <div class="action-buttons">
+                    <button class="action-btn" id="refreshBtn">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Refresh Data</span>
+                    </button>
+                    <button class="action-btn" id="infoBtn">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Informasi</span>
+                    </button>
+                    <button class="action-btn" id="shareBtn">
+                        <i class="fas fa-share-alt"></i>
+                        <span>Bagikan</span>
+                    </button>
+                </div>
+            </div>
 
-// ============================
-// UTILITY FUNCTIONS
-// ============================
-function showToast(message, duration = 3000) {
-  toast.textContent = message;
-  toast.classList.add('show');
-  
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, duration);
-}
+            <!-- Installation Guide -->
+            <div class="guide-card">
+                <div class="guide-header">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Install sebagai Aplikasi</h3>
+                </div>
+                <div class="guide-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Chrome / Edge</h4>
+                            <p>Klik ikon <i class="fas fa-download"></i> "Install" di address bar</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Safari (iOS)</h4>
+                            <p>Tekan <i class="fas fa-share"></i> Share → "Add to Home Screen"</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Android</h4>
+                            <p>Menu Chrome → "Add to Home Screen"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
-function updateLoadingProgress(percent) {
-  statusProgress.style.width = `${percent}%`;
-}
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p><i class="fas fa-copyright"></i> 2024 KDKMP Portal. Hak Cipta Dilindungi.</p>
+                    <p class="footer-links">
+                        <a href="#" id="privacyBtn">Privasi</a> | 
+                        <a href="#" id="termsBtn">Syarat</a> | 
+                        <a href="#" id="helpBtn">Bantuan</a>
+                    </p>
+                </div>
+                <div class="footer-stats">
+                    <p id="connectionStatus"><i class="fas fa-wifi"></i> Terhubung</p>
+                    <p id="appVersion">v1.0.0</p>
+                </div>
+            </div>
+        </footer>
+    </div>
 
-// ============================
-// EFEK TOMBOL
-// ============================
-function createRippleEffect(event) {
-  const button = event.currentTarget;
-  const circle = document.createElement("span");
-  const diameter = Math.max(button.clientWidth, button.clientHeight);
-  const radius = diameter / 2;
-
-  circle.style.width = circle.style.height = `${diameter}px`;
-  circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
-  circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
-  circle.classList.add("ripple");
-
-  const ripple = button.getElementsByClassName("ripple")[0];
-  if (ripple) {
-    ripple.remove();
-  }
-
-  button.appendChild(circle);
-}
-
-// ============================
-// HANDLER TOMBOL
-// ============================
-const buttonConfigs = {
-  btnPemetaan: { 
-    url: "https://pemetaan-lahan.portalkdkmp.id", 
-    name: "Pemetaan Lahan",
-    desc: "Verifikasi akses dan pemetaan lahan pertanian"
-  },
-  btnPortal: { 
-    url: "https://portalkdkmp.id", 
-    name: "Portal KDKMP",
-    desc: "Dashboard utama sistem KDKMP"
-  }
-};
-
-// Setup semua tombol
-Object.keys(buttonConfigs).forEach(btnId => {
-  const button = document.getElementById(btnId);
-  const config = buttonConfigs[btnId];
-  
-  button.addEventListener('click', function(e) {
-    // Efek ripple
-    createRippleEffect(e);
-    
-    // Disable tombol sementara
-    button.disabled = true;
-    button.style.opacity = '0.8';
-    button.style.cursor = 'wait';
-    
-    // Efek visual
-    const icon = button.querySelector('.button-icon');
-    icon.style.transform = 'scale(0.9)';
-    
-    // Show loading toast
-    showToast(`Membuka ${config.name}...`);
-    
-    // Buka link setelah delay kecil
-    setTimeout(() => {
-      window.open(config.url, '_blank', 'noopener,noreferrer');
-      
-      // Reset tombol setelah 1.5 detik
-      setTimeout(() => {
-        button.disabled = false;
-        button.style.opacity = '';
-        button.style.cursor = '';
-        icon.style.transform = '';
-      }, 1500);
-    }, 500);
-  });
-});
-
-// ============================
-// CONTROL BUTTONS
-// ============================
-document.getElementById('infoBtn').addEventListener('click', () => {
-  showToast('KDKMP Portal - Akses cepat ke sistem KDKMP', 4000);
-});
-
-document.getElementById('fullscreenBtn').addEventListener('click', () => {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
-    showToast('Mode layar penuh diaktifkan');
-  } else {
-    document.exitFullscreen();
-    showToast('Mode layar penuh dinonaktifkan');
-  }
-});
-
-// ============================
-// PWA INSTALL PROMPT
-// ============================
-let deferredPrompt;
-const installBtn = document.getElementById('installBtn');
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installBtn.style.display = 'flex';
-  
-  installBtn.addEventListener('click', () => {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        showToast('Aplikasi sedang diinstal...');
-      } else {
-        showToast('Instalasi dibatalkan');
-      }
-      deferredPrompt = null;
-      installBtn.style.display = 'none';
-    });
-  });
-});
-
-// Deteksi jika PWA sudah terinstal
-window.addEventListener('appinstalled', () => {
-  showToast('Aplikasi berhasil diinstal!', 3000);
-  installBtn.style.display = 'none';
-});
-
-// ============================
-// SERVICE WORKER & PWA SETUP
-// ============================
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    // Register service worker
-    navigator.serviceWorker.register('sw.js').then(registration => {
-      console.log('ServiceWorker registered:', registration);
-      
-      // Check for updates
-      registration.addEventListener('updatefound', () => {
-        const newWorker = registration.installing;
-        newWorker.addEventListener('statechange', () => {
-          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-            showToast('Update tersedia! Segarkan halaman.', 5000);
-          }
-        });
-      });
-    }).catch(err => {
-      console.log('ServiceWorker registration failed:', err);
-    });
-  });
-}
-
-// ============================
-// CREATE WEB APP MANIFEST
-// ============================
-const manifest = {
-  "name": "KDKMP Portal",
-  "short_name": "KDKMP",
-  "description": "Portal Akses Cepat Sistem KDKMP",
-  "start_url": ".",
-  "display": "standalone",
-  "background_color": "#1a1a2e",
-  "theme_color": "#2E7D32",
-  "orientation": "portrait",
-  "icons": [
-    {
-      "src": "https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg",
-      "sizes": "192x192",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg",
-      "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
-  ],
-  "categories": ["productivity", "utilities"],
-  "shortcuts": [
-    {
-      "name": "Pemetaan Lahan",
-      "url": "/#pemetaan",
-      "icons": [{ "src": "https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/map.svg", "sizes": "96x96" }]
-    },
-    {
-      "name": "Portal KDKMP",
-      "url": "/#portal",
-      "icons": [{ "src": "https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/view-dashboard.svg", "sizes": "96x96" }]
-    }
-  ]
-};
-
-// Add manifest to page
-const manifestLink = document.createElement('link');
-manifestLink.rel = 'manifest';
-manifestLink.href = 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify(manifest));
-document.head.appendChild(manifestLink);
-
-// ============================
-// ADD RIPPLE EFFECT STYLES
-// ============================
-const rippleStyles = document.createElement('style');
-rippleStyles.textContent = `
-  .ripple {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(0);
-    animation: ripple-animation 0.6s linear;
-    pointer-events: none;
-  }
-  
-  @keyframes ripple-animation {
-    to {
-      transform: scale(4);
-      opacity: 0;
-    }
-  }
-`;
-document.head.appendChild(rippleStyles);
-
-// ============================
-// INITIALIZE
-// ============================
-function initialize() {
-  let progress = 0;
-  const loadingInterval = setInterval(() => {
-    progress += Math.random() * 15 + 10;
-    if (progress > 100) progress = 100;
-    updateLoadingProgress(progress);
-    
-    if (progress >= 100) {
-      clearInterval(loadingInterval);
-      
-      setTimeout(() => {
-        loadingOverlay.classList.add('hidden');
-        showToast('Portal siap digunakan!', 2000);
-        
-        // Deteksi iOS untuk petunjuk instalasi
-        const isIos = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
-        const isInStandaloneMode = window.navigator.standalone === true;
-        
-        if (isIos && !isInStandaloneMode) {
-          setTimeout(() => {
-            showToast('Untuk instalasi: tekan tombol Share, lalu "Add to Home Screen"', 5000);
-          }, 2000);
-        }
-      }, 500);
-    }
-  }, 100);
-}
-
-// Start everything
-window.addEventListener('load', initialize);
-
-// ============================
-// CREATE SERVICE WORKER FILE
-// ============================
-// Service Worker akan dibuat secara dinamis jika tidak ada
-if ('serviceWorker' in navigator) {
-  const swContent = `
-    const CACHE_NAME = 'kdkmp-portal-v1';
-    const urlsToCache = [
-      '.',
-      'https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg'
-    ];
-
-    self.addEventListener('install', event => {
-      event.waitUntil(
-        caches.open(CACHE_NAME)
-          .then(cache => cache.addAll(urlsToCache))
-      );
-      self.skipWaiting();
-    });
-
-    self.addEventListener('activate', event => {
-      event.waitUntil(
-        caches.keys().then(cacheNames => {
-          return Promise.all(
-            cacheNames.map(cacheName => {
-              if (cacheName !== CACHE_NAME) {
-                return caches.delete(cacheName);
-              }
-            })
-          );
-        })
-      );
-      self.clients.claim();
-    });
-
-    self.addEventListener('fetch', event => {
-      event.respondWith(
-        caches.match(event.request)
-          .then(response => {
-            if (response) {
-              return response;
-            }
-            return fetch(event.request);
-          })
-      );
-    });
-  `;
-
-  // Buat blob untuk Service Worker
-  const swBlob = new Blob([swContent], { type: 'application/javascript' });
-  const swUrl = URL.createObjectURL(swBlob);
-  
-  // Register Service Worker
-  navigator.serviceWorker.register(swUrl);
-}
-</script>
+    <!-- JavaScript External -->
+    <script src="script.js"></script>
 </body>
 </html>
