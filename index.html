@@ -10,14 +10,15 @@
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="msapplication-TileColor" content="#000000" />
 <meta name="msapplication-tap-highlight" content="no" />
-<title>Udayana Lightning Portal</title>
-<!-- PWA Icons -->
+<title>Udayana Portal</title>
+<!-- PWA Icons from GitHub Root -->
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 
 <style>
+  /* ===== RESET & BASE STYLES ===== */
   * { 
     margin: 0; 
     padding: 0; 
@@ -27,18 +28,18 @@
 
   html, body {
     height: 100%;
-    overflow: hidden;
-    touch-action: manipulation;
-    background: #000;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #0a1525 0%, #071121 100%);
   }
 
   body {
     font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     min-height: -webkit-fill-available;
     position: relative;
+    color: white;
   }
 
-  /* Logo Udayana */
+  /* ===== HEADER ===== */
   .udayana-header {
     position: absolute;
     top: 15px;
@@ -53,22 +54,19 @@
   .udayana-logo {
     width: 100px;
     height: 100px;
-    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5))
-           drop-shadow(0 0 40px rgba(255, 140, 0, 0.3));
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
     transition: all 0.5s ease;
-    animation: goldenPulse 3s infinite alternate;
+    animation: gentlePulse 3s infinite alternate;
   }
 
-  @keyframes goldenPulse {
+  @keyframes gentlePulse {
     0% { 
       transform: scale(1);
-      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4))
-             drop-shadow(0 0 30px rgba(255, 140, 0, 0.2));
+      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
     }
     100% { 
       transform: scale(1.05);
-      filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.6))
-             drop-shadow(0 0 50px rgba(255, 140, 0, 0.4));
+      filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.6));
     }
   }
 
@@ -77,12 +75,11 @@
     font-size: 22px;
     font-weight: bold;
     margin-top: 8px;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.7),
-                 0 0 25px rgba(255, 140, 0, 0.4);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
     letter-spacing: 2px;
   }
 
-  /* Responsif untuk layar kecil */
+  /* Responsif header */
   @media (max-width: 768px) {
     .udayana-logo {
       width: 80px;
@@ -106,7 +103,7 @@
     }
   }
 
-  /* Container utama */
+  /* ===== MAIN CONTAINER ===== */
   .main-container {
     width: 100%;
     height: 100vh;
@@ -139,38 +136,32 @@
     background: rgba(255, 215, 0, 0.5);
   }
 
-  /* Grid untuk tombol - 3 kolom */
+  /* ===== BUTTONS GRID (3x2) ===== */
   .buttons-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 18px;
     width: 100%;
-    max-width: 1000px;
+    max-width: 900px;
     margin-top: 20px;
     z-index: 10;
     padding-bottom: 20px;
   }
 
   /* Responsif grid */
-  @media (max-width: 1024px) {
-    .buttons-grid {
-      max-width: 800px;
-      gap: 16px;
-    }
-  }
-
   @media (max-width: 768px) {
     .buttons-grid {
+      grid-template-columns: repeat(3, 1fr);
       gap: 14px;
       max-width: 600px;
-      grid-template-columns: repeat(3, 1fr);
     }
   }
 
   @media (max-width: 480px) {
     .buttons-grid {
+      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
-      grid-template-columns: repeat(3, 1fr);
+      max-width: 400px;
     }
     
     .main-container {
@@ -201,7 +192,7 @@
     }
   }
 
-  /* Tombol dengan logo tanpa background */
+  /* ===== BUTTON STYLES ===== */
   .portal-button {
     position: relative;
     cursor: pointer;
@@ -214,18 +205,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 130px;
+    min-height: 140px;
     aspect-ratio: 1/1;
     text-align: center;
   }
 
-  /* Tombol disabled sementara */
+  /* Tombol disabled */
   .portal-button:disabled {
     cursor: not-allowed;
     opacity: 0.7;
   }
 
-  /* Container logo untuk efek khusus */
+  /* Container logo */
   .logo-container {
     width: 100%;
     height: 100%;
@@ -233,41 +224,40 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 15px;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
+    border-radius: 18px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     overflow: hidden;
     position: relative;
   }
 
   .portal-button:hover:not(:disabled) .logo-container { 
-    transform: translateY(-5px) scale(1.08); 
-    filter: brightness(1.4);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8),
-                0 0 30px currentColor,
-                inset 0 0 25px rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-8px) scale(1.05); 
+    background: rgba(0, 0, 0, 0.6);
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow: 
+      0 15px 35px rgba(0, 0, 0, 0.6),
+      0 0 30px rgba(255, 215, 0, 0.2);
   }
 
   .portal-button:active:not(:disabled) .logo-container {
-    transform: translateY(-2px) scale(1.02);
+    transform: translateY(-4px) scale(1.02);
     transition: 0.1s;
   }
 
   /* Logo di dalam tombol */
   .button-logo {
-    width: 65px;
-    height: 65px;
+    width: 70px;
+    height: 70px;
     object-fit: contain;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     transition: all 0.3s ease;
-    filter: drop-shadow(0 0 10px currentColor);
   }
 
-  /* Logo khusus untuk masing-masing tombol */
+  /* Warna khusus untuk setiap logo */
   #btn1 .button-logo {
     filter: drop-shadow(0 0 15px rgba(0, 180, 255, 0.8));
   }
@@ -276,35 +266,33 @@
     filter: drop-shadow(0 0 15px rgba(200, 0, 255, 0.8));
   }
 
-  #btn7 .button-logo {
+  #btn5 .button-logo {
     filter: drop-shadow(0 0 15px rgba(255, 100, 100, 0.8));
   }
 
-  #btn8 .button-logo {
+  #btn6 .button-logo {
     filter: drop-shadow(0 0 15px rgba(100, 255, 200, 0.8));
   }
 
   #btn3 .button-logo,
-  #btn4 .button-logo,
-  #btn5 .button-logo,
-  #btn6 .button-logo {
-    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+  #btn4 .button-logo {
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
   }
 
   .portal-button:hover:not(:disabled) .button-logo {
-    transform: scale(1.1);
-    filter: drop-shadow(0 0 20px currentColor) brightness(1.3);
+    transform: scale(1.15) rotate(5deg);
   }
 
+  /* Text under logo */
   .button-text {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: bold;
     line-height: 1.3;
     color: white;
     text-transform: uppercase;
-    letter-spacing: 1.2px;
-    text-shadow: 0 0 10px currentColor;
-    margin-top: 5px;
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    margin-top: 8px;
     padding: 0 5px;
     text-align: center;
     display: -webkit-box;
@@ -315,85 +303,41 @@
 
   @media (max-width: 768px) {
     .portal-button {
-      min-height: 110px;
+      min-height: 120px;
     }
     
     .logo-container {
-      border-radius: 12px;
+      border-radius: 15px;
     }
     
     .button-logo {
-      width: 55px;
-      height: 55px;
+      width: 60px;
+      height: 60px;
     }
     
     .button-text {
-      font-size: 11px;
-      letter-spacing: 1px;
-      -webkit-line-clamp: 2;
+      font-size: 12px;
+      letter-spacing: 1.2px;
     }
   }
 
   @media (max-width: 480px) {
     .portal-button {
-      min-height: 100px;
+      min-height: 110px;
     }
     
     .button-logo {
-      width: 45px;
-      height: 45px;
+      width: 50px;
+      height: 50px;
     }
     
     .button-text {
-      font-size: 10px;
-      -webkit-line-clamp: 2;
+      font-size: 11px;
+      letter-spacing: 1px;
     }
   }
 
-  /* Canvas untuk efek hujan dan petir */
-  canvas {
-    position: fixed;
-    inset: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .flash-overlay {
-    position: fixed;
-    inset: 0;
-    background: white;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 2;
-    transition: opacity 0.05s;
-  }
-
-  /* Efek pecah seribu */
-  .shard {
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-    background: radial-gradient(circle at 30% 30%, currentColor, transparent);
-    box-shadow: 0 0 15px currentColor;
-    transform-origin: center;
-    z-index: 100;
-    opacity: 0;
-  }
-
-  .spark {
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-    background: radial-gradient(circle, white, transparent);
-    box-shadow: 0 0 20px white,
-                0 0 40px currentColor;
-    z-index: 99;
-    opacity: 0;
-  }
-
-  /* Control buttons */
+  /* ===== CONTROL BUTTONS ===== */
   .control-buttons {
     position: fixed;
     bottom: 20px;
@@ -407,9 +351,9 @@
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: rgba(255, 215, 0, 0.25);
-    border: 2px solid rgba(255, 215, 0, 0.6);
-    color: white;
+    background: rgba(255, 215, 0, 0.2);
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    color: #ffd700;
     font-size: 20px;
     cursor: pointer;
     display: flex;
@@ -422,30 +366,34 @@
 
   .control-btn:hover {
     transform: scale(1.1);
-    background: rgba(255, 215, 0, 0.4);
+    background: rgba(255, 215, 0, 0.3);
+    border-color: rgba(255, 215, 0, 0.8);
   }
 
-  /* Loading overlay */
+  /* ===== LOADING OVERLAY ===== */
   .loading-overlay {
     position: fixed;
     inset: 0;
-    background: #000;
+    background: linear-gradient(135deg, #0a1525 0%, #071121 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
     flex-direction: column;
     gap: 25px;
+    transition: opacity 0.5s ease;
   }
 
   .loading-overlay.hidden {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
   }
 
   .loading-logo {
     width: 120px;
     height: 120px;
     filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8));
+    animation: gentlePulse 2s infinite alternate;
   }
 
   .loading-text {
@@ -453,11 +401,10 @@
     font-size: 24px;
     font-weight: bold;
     text-align: center;
-    animation: pulse 1.5s infinite;
     text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
   }
 
-  /* Status bar untuk efek loading */
+  /* Status bar untuk loading */
   .status-bar {
     width: 200px;
     height: 4px;
@@ -474,6 +421,73 @@
     border-radius: 2px;
     transition: width 0.3s ease;
   }
+
+  /* ===== SIMPLE RIPPLE EFFECT ===== */
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+  }
+
+  @keyframes ripple-animation {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  /* ===== TOAST NOTIFICATION ===== */
+  .toast {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(0, 0, 0, 0.8);
+    color: #ffd700;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 14px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    text-align: center;
+    max-width: 90%;
+  }
+
+  .toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ===== INSTALL BUTTON ===== */
+  .install-button {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    padding: 12px 20px;
+    background: linear-gradient(145deg, rgba(255, 215, 0, 0.9), rgba(255, 140, 0, 0.9));
+    color: black;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 10000;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    display: none;
+  }
+
+  .install-button:hover {
+    transform: scale(1.1);
+  }
 </style>
 </head>
 
@@ -482,11 +496,17 @@
 <div class="loading-overlay" id="loadingOverlay">
   <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Lambang_Kodam_Udayana.svg" 
        alt="Udayana" class="loading-logo">
-  <div class="loading-text">⚡ UDAYANA PORTAL ⚡</div>
+  <div class="loading-text">UDAYANA PORTAL</div>
   <div class="status-bar">
     <div class="status-progress" id="statusProgress"></div>
   </div>
 </div>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast"></div>
+
+<!-- Install Button (akan muncul otomatis) -->
+<button class="install-button" id="installBtn">📲 Install App</button>
 
 <!-- Header dengan logo Udayana -->
 <div class="udayana-header">
@@ -501,13 +521,10 @@
   <button class="control-btn" id="fullscreenBtn" title="Fullscreen">⛶</button>
 </div>
 
-<!-- Canvas untuk efek hujan dan petir -->
-<canvas id="stormCanvas"></canvas>
-<div class="flash-overlay" id="stormFlash"></div>
-
-<!-- Main container dengan grid tombol -->
+<!-- Main container dengan grid tombol (6 tombol) -->
 <div class="main-container">
   <div class="buttons-grid">
+    <!-- Tombol 1: DUKOPS -->
     <button class="portal-button" id="btn1">
       <div class="logo-container">
         <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Lambang_Kodam_Udayana.svg" 
@@ -515,6 +532,8 @@
         <span class="button-text">DUKOPS</span>
       </div>
     </button>
+    
+    <!-- Tombol 2: LPST05 -->
     <button class="portal-button" id="btn2">
       <div class="logo-container">
         <img src="https://raw.githubusercontent.com/Koramil05/JADWAL/main/LOGO%20KOREM163%20Wirasatya.png" 
@@ -522,580 +541,430 @@
         <span class="button-text">LPST05</span>
       </div>
     </button>
+    
+    <!-- Tombol 3: GOOGLE DRIVE -->
     <button class="portal-button" id="btn3">
       <div class="logo-container">
-        <span class="button-logo" style="font-size: 45px;">📁</span>
+        <div class="button-logo" style="font-size: 50px; display: flex; align-items: center; justify-content: center;">📁</div>
         <span class="button-text">GOOGLE DRIVE</span>
       </div>
     </button>
+    
+    <!-- Tombol 4: PEMETAAN LAHAN -->
     <button class="portal-button" id="btn4">
       <div class="logo-container">
-        <span class="button-logo" style="font-size: 45px;">📊</span>
-        <span class="button-text">SPREADSHEET</span>
-      </div>
-    </button>
-    <button class="portal-button" id="btn5">
-      <div class="logo-container">
-        <span class="button-logo" style="font-size: 45px;">🛒</span>
-        <span class="button-text">PLAY STORE</span>
-      </div>
-    </button>
-    <button class="portal-button" id="btn6">
-      <div class="logo-container">
-        <span class="button-logo" style="font-size: 45px;">✈️</span>
-        <span class="button-text">TELEGRAM</span>
-      </div>
-    </button>
-    <!-- Tombol baru untuk Pemetaan Lahan -->
-    <button class="portal-button" id="btn7">
-      <div class="logo-container">
-        <span class="button-logo" style="font-size: 45px;">🗺️</span>
+        <div class="button-logo" style="font-size: 50px; display: flex; align-items: center; justify-content: center;">🗺️</div>
         <span class="button-text">PEMETAAN LAHAN</span>
       </div>
     </button>
-    <!-- Tombol baru untuk Portal KD KMP -->
-    <button class="portal-button" id="btn8">
+    
+    <!-- Tombol 5: PORTAL KD KMP -->
+    <button class="portal-button" id="btn5">
       <div class="logo-container">
-        <span class="button-logo" style="font-size: 45px;">🌐</span>
-        <span class="button-text">PORTAL KD KMP</span>
+        <div class="button-logo" style="font-size: 50px; display: flex; align-items: center; justify-content: center;">🌐</div>
+        <span class="button-text">PORTAL KDKMP</span>
+      </div>
+    </button>
+    
+    <!-- Tombol 6: LAINNYA (Custom) -->
+    <button class="portal-button" id="btn6">
+      <div class="logo-container">
+        <div class="button-logo" style="font-size: 50px; display: flex; align-items: center; justify-content: center;">⭐</div>
+        <span class="button-text">LAINNYA</span>
       </div>
     </button>
   </div>
 </div>
 
 <script>
-// Inisialisasi variabel global
-const canvas = document.getElementById("stormCanvas");
-const ctx = canvas.getContext("2d");
-const flashOverlay = document.getElementById("stormFlash");
-const loadingOverlay = document.getElementById("loadingOverlay");
-const statusProgress = document.getElementById("statusProgress");
-let w = 0, h = 0;
+// ===== UDAYANA PORTAL - SIMPLE VERSION =====
 
-// Resize canvas
-function resizeCanvas() {
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
+// DOM Elements
+const loadingOverlay = document.getElementById('loadingOverlay');
+const statusProgress = document.getElementById('statusProgress');
+const toast = document.getElementById('toast');
+const installBtn = document.getElementById('installBtn');
+const infoBtn = document.getElementById('infoBtn');
+const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+// Configuration for 6 buttons
+const BUTTON_CONFIG = {
+  btn1: { 
+    url: "https://koramil05.github.io/DUKOPS/", 
+    name: "DUKOPS",
+    color: "rgba(0, 180, 255, 0.8)"
+  },
+  btn2: { 
+    url: "https://koramil05.github.io/LPST05/", 
+    name: "LPST05",
+    color: "rgba(200, 0, 255, 0.8)"
+  },
+  btn3: { 
+    url: "https://drive.google.com/drive/folders/1K9iWrM9fGU3sMcEZCmUWIbx0rLs285_x", 
+    name: "GOOGLE DRIVE",
+    color: "rgba(255, 215, 0, 0.8)"
+  },
+  btn4: { 
+    url: "https://pemetaan-lahan.portalkdkmp.id",
+    name: "PEMETAAN LAHAN",
+    color: "rgba(255, 100, 100, 0.8)"
+  },
+  btn5: { 
+    url: "https://portalkdkmp.id/",
+    name: "PORTAL KDKMP",
+    color: "rgba(100, 255, 200, 0.8)"
+  },
+  btn6: { 
+    url: "#",
+    name: "LAINNYA",
+    color: "rgba(180, 180, 255, 0.8)"
+  }
+};
+
+// PWA Variables
+let deferredPrompt;
+
+// ===== UTILITY FUNCTIONS =====
+
+/**
+ * Show toast notification
+ */
+function showToast(message, duration = 3000) {
+  toast.textContent = message;
+  toast.classList.add('show');
+  
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, duration);
 }
-window.addEventListener("resize", resizeCanvas);
-resizeCanvas();
 
-// ============================
-// LOADING ANIMATION
-// ============================
+/**
+ * Update loading progress
+ */
 function updateLoadingProgress(percent) {
   statusProgress.style.width = `${percent}%`;
 }
 
-// ============================
-// EFEK HUJAN GERIMIS (SEPERTI AWAL)
-// ============================
-const rainDrops = [];
-const rainCount = 400;
+/**
+ * Create simple ripple effect
+ */
+function createRipple(event) {
+  const button = event.currentTarget;
+  const circle = document.createElement('span');
+  const diameter = Math.max(button.clientWidth, button.clientHeight);
+  const radius = diameter / 2;
+  
+  circle.style.width = circle.style.height = `${diameter}px`;
+  circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
+  circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
+  circle.classList.add('ripple');
+  
+  const ripple = button.getElementsByClassName('ripple')[0];
+  if (ripple) {
+    ripple.remove();
+  }
+  
+  button.appendChild(circle);
+}
 
-function initRain() {
-  rainDrops.length = 0;
-  for (let i = 0; i < rainCount; i++) {
-    rainDrops.push({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      length: Math.random() * 25 + 15,
-      speed: Math.random() * 8 + 5,
-      thickness: Math.random() * 1.5 + 0.5,
-      opacity: Math.random() * 0.3 + 0.1
+// ===== BUTTON HANDLERS =====
+
+/**
+ * Setup all button event listeners
+ */
+function setupButtons() {
+  Object.keys(BUTTON_CONFIG).forEach(btnId => {
+    const button = document.getElementById(btnId);
+    const config = BUTTON_CONFIG[btnId];
+    
+    button.addEventListener('click', function(e) {
+      // Skip for btn6 (custom)
+      if (btnId === 'btn6') {
+        showToast('Tombol ini dapat dikustomisasi sesuai kebutuhan');
+        return;
+      }
+      
+      // Ripple effect
+      createRipple(e);
+      
+      // Disable button temporarily
+      button.disabled = true;
+      
+      // Visual feedback
+      const logoContainer = button.querySelector('.logo-container');
+      const originalTransform = logoContainer.style.transform;
+      logoContainer.style.transform = 'scale(0.95)';
+      logoContainer.style.filter = 'brightness(1.2)';
+      
+      // Show loading toast
+      showToast(`Membuka ${config.name}...`);
+      
+      // Open URL after delay
+      setTimeout(() => {
+        window.open(config.url, '_blank', 'noopener,noreferrer');
+        
+        // Reset button after delay
+        setTimeout(() => {
+          button.disabled = false;
+          logoContainer.style.transform = originalTransform;
+          logoContainer.style.filter = '';
+        }, 1000);
+      }, 300);
     });
-  }
+  });
 }
 
-function drawRain() {
-  // Background gradient gelap dengan sentuhan biru malam
-  const gradient = ctx.createLinearGradient(0, 0, 0, h);
-  gradient.addColorStop(0, "#0a1525");
-  gradient.addColorStop(0.5, "#071121");
-  gradient.addColorStop(1, "#050a15");
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, w, h);
+// ===== CONTROL BUTTONS =====
+
+/**
+ * Setup control buttons
+ */
+function setupControlButtons() {
+  // Info button
+  infoBtn.addEventListener('click', () => {
+    showToast('UDAYANA PORTAL - Akses cepat sistem', 4000);
+  });
   
-  // Gambar setiap tetesan hujan
-  ctx.strokeStyle = "rgba(180, 200, 255, 0.2)";
-  ctx.lineCap = "round";
-  
-  for (let drop of rainDrops) {
-    // Warna dengan opacity berbeda
-    ctx.strokeStyle = `rgba(180, 200, 255, ${drop.opacity})`;
-    ctx.lineWidth = drop.thickness;
-    
-    ctx.beginPath();
-    ctx.moveTo(drop.x, drop.y);
-    ctx.lineTo(drop.x + drop.length * 0.3, drop.y + drop.length);
-    
-    // Tambahkan efek blur/glow untuk tetesan
-    ctx.shadowBlur = 3;
-    ctx.shadowColor = "rgba(150, 180, 255, 0.3)";
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-    
-    // Update posisi tetesan
-    drop.y += drop.speed;
-    drop.x += 0.8;
-    
-    // Jika tetesan mencapai bawah, reset ke atas
-    if (drop.y > h) {
-      drop.y = -drop.length;
-      drop.x = Math.random() * w;
+  // Fullscreen button
+  fullscreenBtn.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+      fullscreenBtn.innerHTML = '✕';
+      fullscreenBtn.title = 'Keluar Layar Penuh';
+    } else {
+      document.exitFullscreen();
+      fullscreenBtn.innerHTML = '⛶';
+      fullscreenBtn.title = 'Layar Penuh';
     }
-    
-    // Jika tetesan keluar dari kanan, reset ke kiri
-    if (drop.x > w) {
-      drop.x = 0;
-    }
-  }
-  
-  // Tambahkan efek kabut/awan tipis di background
-  for (let i = 0; i < 3; i++) {
-    const fogX = (w / 3) * i + Math.sin(Date.now() * 0.0001 + i) * 50;
-    const fogY = h * 0.7;
-    const fogRadius = w * 0.4;
-    
-    const fogGradient = ctx.createRadialGradient(
-      fogX, fogY, 0,
-      fogX, fogY, fogRadius
-    );
-    fogGradient.addColorStop(0, "rgba(30, 40, 60, 0.05)");
-    fogGradient.addColorStop(1, "rgba(30, 40, 60, 0)");
-    
-    ctx.fillStyle = fogGradient;
-    ctx.beginPath();
-    ctx.arc(fogX, fogY, fogRadius, 0, Math.PI * 2);
-    ctx.fill();
-  }
+  });
 }
 
-// ============================
-// EFEK PECAH SERIBU
-// ============================
-function createThousandShards(button, color) {
-  const rect = button.getBoundingClientRect();
-  const centerX = rect.left + rect.width / 2;
-  const centerY = rect.top + rect.height / 2;
+// ===== PWA FUNCTIONALITY =====
+
+/**
+ * Register Service Worker
+ */
+async function registerServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    try {
+      // Create Service Worker code
+      const swCode = `
+        const CACHE_NAME = 'udayana-portal-v1';
+        
+        self.addEventListener('install', (event) => {
+          console.log('[Service Worker] Installing...');
+          self.skipWaiting();
+        });
+        
+        self.addEventListener('activate', (event) => {
+          console.log('[Service Worker] Activated');
+          event.waitUntil(clients.claim());
+        });
+        
+        self.addEventListener('fetch', (event) => {
+          event.respondWith(
+            fetch(event.request)
+              .catch(() => {
+                return new Response('Udayana Portal - Mode Offline', {
+                  headers: { 'Content-Type': 'text/html' }
+                });
+              })
+          );
+        });
+      `;
+      
+      // Create blob and register
+      const blob = new Blob([swCode], { type: 'application/javascript' });
+      const swUrl = URL.createObjectURL(blob);
+      
+      const registration = await navigator.serviceWorker.register(swUrl);
+      console.log('Service Worker registered:', registration);
+      
+      return registration;
+    } catch (error) {
+      console.error('Service Worker registration failed:', error);
+    }
+  }
+  return null;
+}
+
+/**
+ * Handle PWA installation
+ */
+function setupPWAInstall() {
+  // Before install prompt
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    
+    // Show install button after 3 seconds
+    setTimeout(() => {
+      if (deferredPrompt) {
+        installBtn.style.display = 'block';
+        
+        installBtn.addEventListener('click', async () => {
+          if (!deferredPrompt) return;
+          
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          
+          if (outcome === 'accepted') {
+            console.log('User accepted PWA install');
+            installBtn.style.display = 'none';
+            showToast('Aplikasi sedang diinstal...', 2000);
+          } else {
+            showToast('Instalasi dibatalkan', 2000);
+          }
+          
+          deferredPrompt = null;
+        });
+      }
+    }, 3000);
+  });
   
-  // Simpan logo container asli
-  const logoContainer = button.querySelector('.logo-container');
-  const originalOpacity = logoContainer.style.opacity;
-  const originalTransform = logoContainer.style.transform;
-  
-  // Sembunyikan logo container sementara
-  logoContainer.style.opacity = '0.3';
-  logoContainer.style.transform = 'scale(0.8)';
-  
-  // Warna berdasarkan tombol
-  const colorMap = {
-    'btn1': 'rgba(0, 180, 255, 1)',
-    'btn2': 'rgba(200, 0, 255, 1)',
-    'btn3': 'rgba(255, 220, 80, 1)',
-    'btn4': 'rgba(100, 255, 100, 1)',
-    'btn5': 'rgba(100, 180, 255, 1)',
-    'btn6': 'rgba(0, 220, 255, 1)',
-    'btn7': 'rgba(255, 100, 100, 1)',    // Merah untuk Pemetaan Lahan
-    'btn8': 'rgba(100, 255, 200, 1)'     // Cyan untuk Portal KD KMP
+  // App installed event
+  window.addEventListener('appinstalled', () => {
+    console.log('PWA was installed');
+    installBtn.style.display = 'none';
+    showToast('Aplikasi berhasil diinstal! 🎉', 3000);
+  });
+}
+
+/**
+ * Create Web App Manifest dynamically
+ */
+function createWebAppManifest() {
+  const manifest = {
+    "name": "Udayana Portal",
+    "short_name": "Udayana",
+    "description": "Portal Akses Cepat Kodam Udayana",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0a1525",
+    "theme_color": "#000000",
+    "orientation": "portrait",
+    "icons": [
+      {
+        "src": "/favicon-32x32.png",
+        "sizes": "32x32",
+        "type": "image/png"
+      },
+      {
+        "src": "/apple-touch-icon.png",
+        "sizes": "180x180",
+        "type": "image/png"
+      }
+    ]
   };
   
-  const shardColor = colorMap[button.id] || 'rgba(255, 215, 0, 1)';
-  
-  // Buat 1200 shards
-  for (let i = 0; i < 1200; i++) {
-    const shard = document.createElement('div');
-    shard.className = 'shard';
-    
-    // Ukuran random dengan berbagai ukuran
-    const size = Math.random() * 12 + 3;
-    shard.style.width = `${size}px`;
-    shard.style.height = `${size}px`;
-    
-    // Warna dengan opacity bervariasi
-    shard.style.color = shardColor;
-    shard.style.opacity = Math.random() * 0.8 + 0.2;
-    
-    // Posisi awal dari tengah tombol
-    shard.style.left = `${centerX}px`;
-    shard.style.top = `${centerY}px`;
-    
-    // Gerakan random dengan variasi
-    const angle = Math.random() * Math.PI * 2;
-    const distance = Math.random() * 350 + 150;
-    const rotation = Math.random() * 720;
-    
-    // Animasi
-    shard.animate([
-      {
-        transform: 'translate(0, 0) rotate(0deg) scale(1)',
-        opacity: 1
-      },
-      {
-        transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) rotate(${rotation}deg) scale(0)`,
-        opacity: 0
-      }
-    ], {
-      duration: 1000 + Math.random() * 800,
-      easing: 'cubic-bezier(0.2, 0.8, 0.3, 1)',
-      fill: 'forwards',
-      delay: Math.random() * 200
-    });
-    
-    document.body.appendChild(shard);
-    
-    // Hapus shard setelah animasi
-    setTimeout(() => shard.remove(), 1800);
-  }
-  
-  // Buat 600 sparks
-  for (let i = 0; i < 600; i++) {
-    const spark = document.createElement('div');
-    spark.className = 'spark';
-    
-    // Ukuran spark bervariasi
-    const sparkSize = Math.random() * 10 + 3;
-    spark.style.width = `${sparkSize}px`;
-    spark.style.height = `${sparkSize}px`;
-    
-    // Warna spark
-    spark.style.color = shardColor;
-    spark.style.opacity = Math.random() * 0.9 + 0.1;
-    
-    spark.style.left = `${centerX}px`;
-    spark.style.top = `${centerY}px`;
-    
-    const angle = Math.random() * Math.PI * 2;
-    const distance = Math.random() * 300 + 100;
-    
-    spark.animate([
-      {
-        transform: 'translate(0, 0) scale(1)',
-        opacity: 1,
-        filter: 'blur(0px)'
-      },
-      {
-        transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0)`,
-        opacity: 0,
-        filter: 'blur(5px)'
-      }
-    ], {
-      duration: 700 + Math.random() * 500,
-      easing: 'cubic-bezier(0.1, 0.9, 0.2, 1)',
-      fill: 'forwards',
-      delay: Math.random() * 150
-    });
-    
-    document.body.appendChild(spark);
-    setTimeout(() => spark.remove(), 1200);
-  }
-  
-  // Kembalikan logo container setelah 1.2 detik dengan efek
-  setTimeout(() => {
-    logoContainer.animate([
-      { opacity: 0.3, transform: 'scale(0.8) rotate(-10deg)' },
-      { opacity: 1, transform: 'scale(1.1) rotate(5deg)' },
-      { opacity: 1, transform: 'scale(1) rotate(0deg)' }
-    ], {
-      duration: 600,
-      easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
-    });
-    
-    // Set style setelah animasi
-    setTimeout(() => {
-      logoContainer.style.opacity = originalOpacity;
-      logoContainer.style.transform = originalTransform;
-    }, 600);
-  }, 1200);
+  // Add manifest to page
+  const manifestElement = document.createElement('link');
+  manifestElement.rel = 'manifest';
+  manifestElement.href = 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify(manifest));
+  document.head.appendChild(manifestElement);
 }
 
-// ============================
-// HANDLER TOMBOL (Sekarang 8 tombol)
-// ============================
-const buttonConfigs = {
-  btn1: { 
-    url: "https://koramil05.github.io/DUKOPS/", 
-    name: "DUKOPS" 
-  },
-  btn2: { 
-    url: "https://koramil05.github.io/LPST05/", 
-    name: "LPST05" 
-  },
-  btn3: { 
-    url: "https://drive.google.com/drive/folders/1K9iWrM9fGU3sMcEZCmUWIbx0rLs285_x", 
-    name: "GOOGLE DRIVE" 
-  },
-  btn4: { 
-    url: "https://docs.google.com/spreadsheets", 
-    name: "SPREADSHEET" 
-  },
-  btn5: { 
-    url: "market://details?id=com.android.vending",
-    fallback: "https://play.google.com/store",
-    name: "PLAY STORE" 
-  },
-  btn6: { 
-    url: "tg://resolve?domain=telegram",
-    fallback: "https://t.me/telegram",
-    name: "TELEGRAM" 
-  },
-  btn7: { 
-    url: "https://pemetaan-lahan.portalkdkmp.id",
-    name: "PEMETAAN LAHAN" 
-  },
-  btn8: { 
-    url: "https://portalkdkmp.id/",
-    name: "PORTAL KD KMP" 
-  }
-};
+// ===== INITIALIZATION =====
 
-// Setup semua tombol
-Object.keys(buttonConfigs).forEach(btnId => {
-  const button = document.getElementById(btnId);
-  const config = buttonConfigs[btnId];
+/**
+ * Initialize the application
+ */
+async function initializeApp() {
+  console.log('🚀 Initializing Udayana Portal...');
   
-  button.addEventListener('click', async (e) => {
-    // Nonaktifkan tombol sementara
-    button.disabled = true;
-    
-    // Efek visual tombol saat diklik
-    const logoContainer = button.querySelector('.logo-container');
-    const originalTransform = logoContainer.style.transform;
-    logoContainer.style.transform = 'scale(0.9)';
-    logoContainer.style.filter = 'brightness(1.5) saturate(2)';
-    
-    // Efek pecah seribu
-    createThousandShards(button, btnId);
-    
-    // Tunggu 1.5 detik untuk semua animasi
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // Kembalikan tombol ke semula
-    logoContainer.style.transform = originalTransform;
-    logoContainer.style.filter = '';
-    
-    // Buka link
-    setTimeout(() => {
-      if (config.fallback) {
-        const appWindow = window.open(config.url, '_blank');
-        setTimeout(() => {
-          if (!appWindow || appWindow.closed || typeof appWindow.closed === 'undefined') {
-            window.open(config.fallback, '_blank');
-          }
-        }, 500);
-      } else {
-        window.open(config.url, '_blank');
-      }
-      
-      // Aktifkan kembali tombol setelah 500ms
-      setTimeout(() => {
-        button.disabled = false;
-      }, 500);
-    }, 200);
-  });
-});
-
-// ============================
-// CONTROL BUTTONS
-// ============================
-document.getElementById('infoBtn').addEventListener('click', () => {
-  alert('🛡️ UDAYANA PORTAL 🛡️\n\nPortal Akses Cepat Kodam Udayana:\n\n• DUKOPS - Website Resmi\n• LPST05 - Website Resmi\n• Google Drive - Folder Dokumentasi\n• Spreadsheet - Laporan Digital\n• Play Store - Aplikasi Android\n• Telegram - Komunikasi Tim\n• Pemetaan Lahan - Sistem Pemetaan\n• Portal KD KMP - Website Utama\n\nKlik tombol untuk efek spektakuler!');
-});
-
-document.getElementById('fullscreenBtn').addEventListener('click', () => {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
-    document.getElementById('fullscreenBtn').textContent = '✕';
-  } else {
-    document.exitFullscreen();
-    document.getElementById('fullscreenBtn').textContent = '⛶';
-  }
-});
-
-// ============================
-// PWA SETUP UNTUK GITHUB PAGES
-// ============================
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    const swCode = `
-      self.addEventListener('install', (e) => {
-        console.log('[Service Worker] Installing Udayana Portal');
-        self.skipWaiting();
-      });
-      
-      self.addEventListener('activate', (e) => {
-        console.log('[Service Worker] Activating Udayana Portal');
-        e.waitUntil(clients.claim());
-      });
-      
-      self.addEventListener('fetch', (e) => {
-        e.respondWith(
-          fetch(e.request).catch(() => {
-            return new Response('Udayana Portal - Offline Mode', {
-              status: 200,
-              headers: { 'Content-Type': 'text/html' }
-            });
-          })
-        );
-      });
-    `;
-    
-    const blob = new Blob([swCode], { type: 'application/javascript' });
-    const swUrl = URL.createObjectURL(blob);
-    
-    navigator.serviceWorker.register(swUrl)
-      .then(reg => {
-        console.log('Service Worker registered for scope:', reg.scope);
-        
-        // Cek update setiap jam
-        setInterval(() => {
-          reg.update();
-        }, 3600000);
-      })
-      .catch(err => console.log('Service Worker registration failed:', err));
-  });
-}
-
-// Create manifest untuk PWA
-const manifest = {
-  "name": "Udayana Portal",
-  "short_name": "Udayana",
-  "description": "Portal Akses Cepat Kodam Udayana dengan Efek Visual Spektakuler",
-  "start_url": ".",
-  "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#ffd700",
-  "orientation": "portrait",
-  "icons": [
-    {
-      "src": "https://upload.wikimedia.org/wikipedia/commons/2/25/Lambang_Kodam_Udayana.svg",
-      "sizes": "192x192 512x512",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
-  ],
-  "categories": ["productivity", "utilities"],
-  "lang": "id",
-  "dir": "ltr"
-};
-
-// Inject manifest secara dinamis
-const manifestElement = document.createElement('link');
-manifestElement.rel = 'manifest';
-manifestElement.href = 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify(manifest));
-document.head.appendChild(manifestElement);
-
-// Handle PWA installation
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  
-  // Tampilkan notifikasi install setelah 5 detik
-  setTimeout(() => {
-    if (window.matchMedia('(display-mode: standalone)').matches) return;
-    
-    const installBtn = document.createElement('button');
-    installBtn.textContent = '📲 Install App';
-    installBtn.style.cssText = `
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      padding: 12px 20px;
-      background: linear-gradient(145deg, rgba(255, 215, 0, 0.9), rgba(255, 140, 0, 0.9));
-      color: black;
-      border: none;
-      border-radius: 25px;
-      font-weight: bold;
-      font-size: 14px;
-      cursor: pointer;
-      z-index: 10000;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-      transition: all 0.3s ease;
-    `;
-    
-    installBtn.onmouseover = () => installBtn.style.transform = 'scale(1.1)';
-    installBtn.onmouseout = () => installBtn.style.transform = 'scale(1)';
-    
-    installBtn.onclick = async () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-          console.log('User accepted PWA installation');
-          installBtn.remove();
-        }
-        deferredPrompt = null;
-      }
-    };
-    
-    document.body.appendChild(installBtn);
-    
-    // Auto remove setelah 15 detik
-    setTimeout(() => {
-      if (installBtn.parentNode) {
-        installBtn.style.opacity = '0';
-        installBtn.style.transform = 'translateY(20px)';
-        setTimeout(() => installBtn.remove(), 300);
-      }
-    }, 15000);
-  }, 5000);
-});
-
-// ============================
-// INITIALIZE
-// ============================
-function initialize() {
   // Update loading progress
   let progress = 0;
   const loadingInterval = setInterval(() => {
-    progress += Math.random() * 15 + 5;
+    progress += Math.random() * 15 + 10;
     if (progress > 100) progress = 100;
     updateLoadingProgress(progress);
     
     if (progress >= 100) {
       clearInterval(loadingInterval);
-      initRain();
       
-      // Animasi utama - HANYA HUJAN
-      function animate() {
-        drawRain();
-        requestAnimationFrame(animate);
-      }
-      animate();
-      
-      // Sembunyikan loading
+      // Hide loading overlay
       setTimeout(() => {
         loadingOverlay.style.opacity = '0';
-        loadingOverlay.style.transform = 'scale(1.1)';
         setTimeout(() => {
           loadingOverlay.classList.add('hidden');
+          showToast('Portal siap digunakan!', 2000);
         }, 500);
-      }, 800);
+      }, 500);
     }
-  }, 100);
+  }, 150);
+  
+  // Setup buttons
+  setupButtons();
+  
+  // Setup control buttons
+  setupControlButtons();
+  
+  // Create Web App Manifest
+  createWebAppManifest();
+  
+  // Setup PWA installation
+  setupPWAInstall();
+  
+  // Register Service Worker
+  await registerServiceWorker();
+  
+  // Check if running as PWA
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    console.log('📱 Running as installed PWA');
+    showToast('Mode aplikasi aktif', 2000);
+  }
+  
+  console.log('✅ Udayana Portal initialized successfully');
 }
 
-// Start everything
-window.addEventListener('load', initialize);
+// ===== START APPLICATION =====
 
-// Handle orientation change
+// Start when DOM is loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+  initializeApp();
+}
+
+// Handle orientation changes
 window.addEventListener('orientationchange', () => {
   setTimeout(() => {
-    resizeCanvas();
-    initRain();
+    // Force reflow for responsive adjustments
+    window.dispatchEvent(new Event('resize'));
   }, 300);
 });
 
-// Handle app install event
-window.addEventListener('appinstalled', () => {
-  console.log('PWA was successfully installed');
+// Handle online/offline status
+window.addEventListener('online', () => {
+  showToast('Koneksi internet tersedia', 2000);
+});
+
+window.addEventListener('offline', () => {
+  showToast('Mode offline aktif', 3000);
+});
+
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+  // Ctrl/Cmd + 1-6 untuk tombol
+  if ((e.ctrlKey || e.metaKey) && e.key >= '1' && e.key <= '6') {
+    e.preventDefault();
+    const buttonId = `btn${e.key}`;
+    const button = document.getElementById(buttonId);
+    if (button) button.click();
+  }
   
-  // Tampilkan pesan selamat datang
-  setTimeout(() => {
-    alert('🎉 Udayana Portal Berhasil Diinstall!\n\nAplikasi sekarang tersedia di perangkat Anda. Terima kasih!');
-  }, 1000);
+  // F11 untuk fullscreen
+  if (e.key === 'F11') {
+    e.preventDefault();
+    fullscreenBtn.click();
+  }
+  
+  // F5 untuk refresh
+  if (e.key === 'F5') {
+    e.preventDefault();
+    showToast('Memperbarui halaman...', 1000);
+    setTimeout(() => location.reload(), 100);
+  }
 });
 </script>
 </body>
