@@ -1,213 +1,144 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KDKMP Portal - Akses Cepat</title>
-    
-    <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#2E7D32">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="KDKMP Portal">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="msapplication-TileColor" content="#2E7D32">
-    <meta name="description" content="Portal Akses Cepat Sistem KDKMP - Pemetaan Lahan dan Dashboard">
-    
-    <!-- Favicon & Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg">
-    <link rel="manifest" href="manifest.json">
-    
-    <!-- CSS External -->
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Font Awesome Icons -->
+    <title>Army Tua Portal</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a2e;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            background: #2E7D32;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+            box-shadow: 0 0 30px #2E7D32;
+        }
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #90CAF9;
+            opacity: 0.8;
+        }
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .btn {
+            background: #2E7D32;
+            border: none;
+            border-radius: 15px;
+            padding: 25px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+        }
+        .btn:hover {
+            background: #388E3C;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(46, 125, 50, 0.5);
+        }
+        .btn:active {
+            transform: translateY(-2px);
+        }
+        .btn i {
+            font-size: 24px;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #90A4AE;
+            font-size: 0.9rem;
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading" class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-spinner">
-                <div class="spinner"></div>
-            </div>
-            <div class="loading-text">
-                <h2>KDKMP PORTAL</h2>
-                <p>Memuat sistem...</p>
-                <div class="loading-bar">
-                    <div class="loading-progress"></div>
-                </div>
-            </div>
+    <div class="header">
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
         </div>
+        <h1>ARMY TUA PORTAL</h1>
+        <p class="subtitle">Akses Cepat Sistem Veteran</p>
     </div>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="toast"></div>
-
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="logo-container">
-                <div class="logo">
-                    <i class="fas fa-globe-asia"></i>
-                </div>
-                <div class="header-text">
-                    <h1 class="site-title">KDKMP PORTAL</h1>
-                    <p class="site-subtitle">Akses Cepat Sistem Pemetaan & Dashboard</p>
-                </div>
-            </div>
-            
-            <div class="header-controls">
-                <button id="themeToggle" class="control-btn" title="Ganti tema">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button id="fullscreenBtn" class="control-btn" title="Layar penuh">
-                    <i class="fas fa-expand"></i>
-                </button>
-                <button id="installBtn" class="control-btn install-btn" title="Install aplikasi" style="display: none;">
-                    <i class="fas fa-download"></i>
-                </button>
-            </div>
-        </header>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Stats Cards -->
-            <div class="stats-container">
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-map-marked-alt"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3>Pemetaan Lahan</h3>
-                        <p>Sistem verifikasi digital</p>
-                    </div>
-                    <div class="stat-badge">Aktif</div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3>Dashboard</h3>
-                        <p>Monitoring real-time</p>
-                    </div>
-                    <div class="stat-badge">Online</div>
-                </div>
-            </div>
-
-            <!-- Main Buttons Grid -->
-            <div class="buttons-grid">
-                <button class="portal-btn primary-btn" id="btnPemetaan">
-                    <div class="btn-icon">
-                        <i class="fas fa-map"></i>
-                    </div>
-                    <div class="btn-content">
-                        <h3>PEMETAAN LAHAN</h3>
-                        <p>Akses sistem pemetaan lahan pertanian KDKMP untuk verifikasi dan monitoring</p>
-                        <div class="btn-meta">
-                            <span class="badge"><i class="fas fa-lock"></i> Secure</span>
-                            <span class="badge"><i class="fas fa-bolt"></i> Fast</span>
-                        </div>
-                    </div>
-                    <div class="btn-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </button>
-
-                <button class="portal-btn secondary-btn" id="btnPortal">
-                    <div class="btn-icon">
-                        <i class="fas fa-tachometer-alt"></i>
-                    </div>
-                    <div class="btn-content">
-                        <h3>PORTAL KDKMP</h3>
-                        <p>Dashboard utama untuk manajemen data dan analisis sistem KDKMP</p>
-                        <div class="btn-meta">
-                            <span class="badge"><i class="fas fa-database"></i> Data</span>
-                            <span class="badge"><i class="fas fa-chart-bar"></i> Analytics</span>
-                        </div>
-                    </div>
-                    <div class="btn-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </button>
-            </div>
-
-            <!-- Quick Actions -->
-            <div class="quick-actions">
-                <h2 class="section-title">Aksi Cepat</h2>
-                <div class="action-buttons">
-                    <button class="action-btn" id="refreshBtn">
-                        <i class="fas fa-sync-alt"></i>
-                        <span>Refresh Data</span>
-                    </button>
-                    <button class="action-btn" id="infoBtn">
-                        <i class="fas fa-info-circle"></i>
-                        <span>Informasi</span>
-                    </button>
-                    <button class="action-btn" id="shareBtn">
-                        <i class="fas fa-share-alt"></i>
-                        <span>Bagikan</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Installation Guide -->
-            <div class="guide-card">
-                <div class="guide-header">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Install sebagai Aplikasi</h3>
-                </div>
-                <div class="guide-steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h4>Chrome / Edge</h4>
-                            <p>Klik ikon <i class="fas fa-download"></i> "Install" di address bar</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h4>Safari (iOS)</h4>
-                            <p>Tekan <i class="fas fa-share"></i> Share → "Add to Home Screen"</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h4>Android</h4>
-                            <p>Menu Chrome → "Add to Home Screen"</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <p><i class="fas fa-copyright"></i> 2024 KDKMP Portal. Hak Cipta Dilindungi.</p>
-                    <p class="footer-links">
-                        <a href="#" id="privacyBtn">Privasi</a> | 
-                        <a href="#" id="termsBtn">Syarat</a> | 
-                        <a href="#" id="helpBtn">Bantuan</a>
-                    </p>
-                </div>
-                <div class="footer-stats">
-                    <p id="connectionStatus"><i class="fas fa-wifi"></i> Terhubung</p>
-                    <p id="appVersion">v1.0.0</p>
-                </div>
-            </div>
-        </footer>
+    
+    <div class="buttons">
+        <button class="btn" onclick="window.open('https://pemetaan-lahan.portalkdkmp.id', '_blank')">
+            <i class="fas fa-map"></i> PEMETAAN LAHAN
+        </button>
+        
+        <button class="btn" onclick="window.open('https://portalkdkmp.id', '_blank')">
+            <i class="fas fa-chart-line"></i> PORTAL KDKMP
+        </button>
+        
+        <button class="btn" onclick="alert('Army Tua Portal\nDua tombol akses cepat\n• Pemetaan Lahan\n• Portal KDKMP')">
+            <i class="fas fa-info-circle"></i> INFO
+        </button>
     </div>
-
-    <!-- JavaScript External -->
-    <script src="script.js"></script>
+    
+    <div class="footer">
+        <p>© 2024 Army Tua • Veteran Access Portal</p>
+        <p style="margin-top: 10px; font-size: 0.8rem; color: #78909C;">
+            Install: Chrome → Add to Home Screen
+        </p>
+    </div>
+    
+    <script>
+        // PWA Manifest
+        const manifest = {
+            "name": "Army Tua",
+            "short_name": "ArmyTua",
+            "start_url": ".",
+            "display": "standalone",
+            "background_color": "#1a1a2e",
+            "theme_color": "#2E7D32"
+        };
+        
+        const link = document.createElement('link');
+        link.rel = 'manifest';
+        link.href = 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify(manifest));
+        document.head.appendChild(link);
+        
+        // Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+        
+        console.log('🟢 Army Tua Portal Ready');
+    </script>
 </body>
 </html>
