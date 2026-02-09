@@ -1,0 +1,133 @@
+{
+  "name": "KDKMP Portal",
+  "short_name": "KDKMP",
+  "description": "Portal Akses Cepat Sistem Pemetaan Lahan dan Dashboard KDKMP",
+  "start_url": "/tombolkd/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "background_color": "#2E7D32",
+  "theme_color": "#2E7D32",
+  "orientation": "portrait",
+  "scope": "/tombolkd/",
+  "lang": "id",
+  "dir": "ltr",
+  "categories": ["productivity", "business", "utilities"],
+  "icons": [
+    {
+      "src": "https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg",
+      "sizes": "72x72",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg",
+      "sizes": "96x96",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg",
+      "sizes": "128x128",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg",
+      "sizes": "144x144",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg",
+      "sizes": "152x152",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg",
+      "sizes": "384x384",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/earth.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://via.placeholder.com/1920x1080/2E7D32/FFFFFF?text=KDKMP+Portal",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "KDKMP Portal Dashboard"
+    },
+    {
+      "src": "https://via.placeholder.com/1080x1920/2E7D32/FFFFFF?text=KDKMP+Mobile",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "KDKMP Portal Mobile"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Pemetaan Lahan",
+      "short_name": "Pemetaan",
+      "description": "Buka sistem Pemetaan Lahan",
+      "url": "/tombolkd/#pemetaan",
+      "icons": [
+        {
+          "src": "https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/map.svg",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Portal Dashboard",
+      "short_name": "Dashboard",
+      "description": "Buka Dashboard KDKMP",
+      "url": "/tombolkd/#dashboard",
+      "icons": [
+        {
+          "src": "https://cdn.jsdelivr.net/npm/@mdi/svg@7.4.47/svg/view-dashboard.svg",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+kdkmp",
+      "url": "/tombolkd/?url=%s"
+    }
+  ],
+  "share_target": {
+    "action": "/tombolkd/share/",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "file_handlers": [
+    {
+      "action": "/tombolkd/open/",
+      "accept": {
+        "text/csv": [".csv"],
+        "application/json": [".json"]
+      }
+    }
+  ]
+}
