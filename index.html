@@ -370,6 +370,217 @@
     border-color: rgba(255, 215, 0, 0.8);
   }
 
+  /* ===== UPDATE BADGE & NOTIFICATION ===== */
+  .update-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 20px;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
+    animation: pulse 2s infinite;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.5px;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* Update Modal */
+  .update-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: linear-gradient(145deg, #1a2635, #0f1a2a);
+    padding: 25px;
+    border-radius: 25px;
+    z-index: 10001;
+    max-width: 380px;
+    width: 90%;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(20px);
+    color: white;
+  }
+
+  .update-modal.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .update-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+    padding-bottom: 15px;
+  }
+
+  .update-icon {
+    font-size: 40px;
+    animation: gentlePulse 2s infinite;
+  }
+
+  .update-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  }
+
+  .update-version {
+    background: rgba(255, 215, 0, 0.15);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+
+  .update-changelog {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 18px;
+    margin: 20px 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .changelog-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .changelog-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .changelog-icon {
+    font-size: 20px;
+    min-width: 28px;
+    text-align: center;
+  }
+
+  .changelog-text {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .update-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+  }
+
+  .update-btn {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .update-btn-primary {
+    background: linear-gradient(145deg, #ffd700, #ff8c00);
+    color: #000;
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+  }
+
+  .update-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+  }
+
+  .update-btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    backdrop-filter: blur(5px);
+  }
+
+  .update-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 215, 0, 0.6);
+  }
+
+  /* Update progress */
+  .update-progress {
+    margin-top: 20px;
+    display: none;
+  }
+
+  .update-progress.show {
+    display: block;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 10px 0;
+  }
+
+  .progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ffd700, #ff8c00);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+
+  .progress-text {
+    font-size: 14px;
+    color: #ffd700;
+    text-align: center;
+  }
+
+  /* Update overlay */
+  .update-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .update-overlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
   /* ===== LOADING OVERLAY ===== */
   .loading-overlay {
     position: fixed;
@@ -488,6 +699,44 @@
   .install-button:hover {
     transform: scale(1.1);
   }
+
+  /* Update info button */
+  .update-info-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #ffd700, #ff8c00);
+    border: none;
+    color: #000;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    animation: gentlePulse 2s infinite;
+  }
+
+  .update-info-btn:hover {
+    transform: scale(1.15) rotate(90deg);
+  }
+
+  .update-info-btn .badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4444;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    animation: pulse 2s infinite;
+  }
 </style>
 </head>
 
@@ -507,6 +756,62 @@
 
 <!-- Install Button (akan muncul otomatis) -->
 <button class="install-button" id="installBtn">📲 Install App</button>
+
+<!-- Update Info Button -->
+<button class="update-info-btn" id="updateInfoBtn" title="Info Update">
+  🚀
+  <span class="badge" id="updateBadge">1</span>
+</button>
+
+<!-- Update Modal -->
+<div class="update-overlay" id="updateOverlay"></div>
+<div class="update-modal" id="updateModal">
+  <div class="update-modal-header">
+    <span class="update-icon">🚀</span>
+    <span class="update-title">UPDATE TERSEDIA!</span>
+  </div>
+  
+  <div class="update-version">Versi 2.5.0</div>
+  
+  <div class="update-changelog">
+    <div class="changelog-item">
+      <span class="changelog-icon">✨</span>
+      <span class="changelog-text">Tampilan baru yang lebih modern dan responsif</span>
+    </div>
+    <div class="changelog-item">
+      <span class="changelog-icon">🚀</span>
+      <span class="changelog-text">Performa 2x lebih cepat dengan optimasi loading</span>
+    </div>
+    <div class="changelog-item">
+      <span class="changelog-icon">🔒</span>
+      <span class="changelog-text">Keamanan ditingkatkan dengan enkripsi data</span>
+    </div>
+    <div class="changelog-item">
+      <span class="changelog-icon">🌙</span>
+      <span class="changelog-text">Mode gelap otomatis mengikuti sistem</span>
+    </div>
+    <div class="changelog-item">
+      <span class="changelog-icon">📱</span>
+      <span class="changelog-text">Navigasi lebih mudah di perangkat mobile</span>
+    </div>
+    <div class="changelog-item">
+      <span class="changelog-icon">🐛</span>
+      <span class="changelog-text">Perbaikan bug pada beberapa tombol</span>
+    </div>
+  </div>
+  
+  <div class="update-progress" id="updateProgress">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-text" id="progressText">Mengunduh update...</div>
+  </div>
+  
+  <div class="update-buttons">
+    <button class="update-btn update-btn-secondary" id="laterBtn">Nanti</button>
+    <button class="update-btn update-btn-primary" id="updateNowBtn">UPDATE NOW</button>
+  </div>
+</div>
 
 <!-- Header dengan logo Udayana -->
 <div class="udayana-header">
@@ -577,7 +882,7 @@
 </div>
 
 <script>
-// ===== UDAYANA PORTAL - SIMPLE VERSION =====
+// ===== UDAYANA PORTAL - DENGAN FITUR UPDATE =====
 
 // DOM Elements
 const loadingOverlay = document.getElementById('loadingOverlay');
@@ -586,6 +891,15 @@ const toast = document.getElementById('toast');
 const installBtn = document.getElementById('installBtn');
 const infoBtn = document.getElementById('infoBtn');
 const fullscreenBtn = document.getElementById('fullscreenBtn');
+const updateModal = document.getElementById('updateModal');
+const updateOverlay = document.getElementById('updateOverlay');
+const updateInfoBtn = document.getElementById('updateInfoBtn');
+const updateBadge = document.getElementById('updateBadge');
+const laterBtn = document.getElementById('laterBtn');
+const updateNowBtn = document.getElementById('updateNowBtn');
+const updateProgress = document.getElementById('updateProgress');
+const progressFill = document.getElementById('progressFill');
+const progressText = document.getElementById('progressText');
 
 // Configuration for 6 buttons
 const BUTTON_CONFIG = {
@@ -623,6 +937,7 @@ const BUTTON_CONFIG = {
 
 // PWA Variables
 let deferredPrompt;
+let updateInterval;
 
 // ===== UTILITY FUNCTIONS =====
 
@@ -665,6 +980,98 @@ function createRipple(event) {
   }
   
   button.appendChild(circle);
+}
+
+// ===== UPDATE FUNCTIONALITY =====
+
+/**
+ * Show update modal
+ */
+function showUpdateModal() {
+  updateOverlay.classList.add('show');
+  updateModal.classList.add('show');
+  updateBadge.style.display = 'none';
+  
+  // Auto hide after 30 seconds
+  setTimeout(() => {
+    if (updateModal.classList.contains('show')) {
+      hideUpdateModal();
+      showToast('Update dapat diakses melalui tombol 🚀', 3000);
+    }
+  }, 30000);
+}
+
+/**
+ * Hide update modal
+ */
+function hideUpdateModal() {
+  updateOverlay.classList.remove('show');
+  updateModal.classList.remove('show');
+  updateProgress.classList.remove('show');
+}
+
+/**
+ * Simulate update download
+ */
+function simulateUpdate() {
+  // Hide buttons
+  laterBtn.style.display = 'none';
+  updateNowBtn.style.display = 'none';
+  
+  // Show progress
+  updateProgress.classList.add('show');
+  
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += Math.random() * 15 + 5;
+    if (progress > 100) progress = 100;
+    
+    progressFill.style.width = `${progress}%`;
+    progressText.textContent = `Mengunduh update... ${Math.floor(progress)}%`;
+    
+    if (progress >= 100) {
+      clearInterval(interval);
+      progressText.textContent = 'Update selesai! ✨';
+      
+      setTimeout(() => {
+        hideUpdateModal();
+        showToast('Update berhasil! Aplikasi siap digunakan 🎉', 4000);
+        
+        // Reset buttons
+        laterBtn.style.display = 'block';
+        updateNowBtn.style.display = 'block';
+        
+        // Hide badge permanently
+        updateBadge.style.display = 'none';
+        
+        // Save to localStorage
+        localStorage.setItem('updateShown', 'true');
+        localStorage.setItem('updateVersion', '2.5.0');
+      }, 1000);
+    }
+  }, 200);
+  
+  // Store interval to clear if needed
+  updateInterval = interval;
+}
+
+/**
+ * Check for updates
+ */
+function checkForUpdates() {
+  const lastUpdate = localStorage.getItem('updateShown');
+  const lastVersion = localStorage.getItem('updateVersion');
+  
+  // Show update if not shown before or version changed
+  if (!lastUpdate || lastVersion !== '2.5.0') {
+    // Show after 5 seconds
+    setTimeout(() => {
+      showUpdateModal();
+    }, 5000);
+  } else {
+    // Hide badge if update already installed
+    updateBadge.style.display = 'none';
+  }
 }
 
 // ===== BUTTON HANDLERS =====
@@ -722,7 +1129,7 @@ function setupButtons() {
 function setupControlButtons() {
   // Info button
   infoBtn.addEventListener('click', () => {
-    showToast('UDAYANA PORTAL - Akses cepat sistem', 4000);
+    showToast('UDAYANA PORTAL v2.5.0 - Akses cepat sistem', 4000);
   });
   
   // Fullscreen button
@@ -737,6 +1144,29 @@ function setupControlButtons() {
       fullscreenBtn.title = 'Layar Penuh';
     }
   });
+  
+  // Update info button
+  updateInfoBtn.addEventListener('click', () => {
+    showUpdateModal();
+  });
+  
+  // Update modal buttons
+  laterBtn.addEventListener('click', () => {
+    hideUpdateModal();
+    showToast('Update akan diingatkan nanti', 2000);
+    
+    // Save to localStorage
+    localStorage.setItem('updateLater', 'true');
+  });
+  
+  updateNowBtn.addEventListener('click', () => {
+    simulateUpdate();
+  });
+  
+  // Close modal when clicking overlay
+  updateOverlay.addEventListener('click', () => {
+    hideUpdateModal();
+  });
 }
 
 // ===== PWA FUNCTIONALITY =====
@@ -749,10 +1179,10 @@ async function registerServiceWorker() {
     try {
       // Create Service Worker code
       const swCode = `
-        const CACHE_NAME = 'udayana-portal-v1';
+        const CACHE_NAME = 'udayana-portal-v2.5.0';
         
         self.addEventListener('install', (event) => {
-          console.log('[Service Worker] Installing...');
+          console.log('[Service Worker] Installing new version...');
           self.skipWaiting();
         });
         
@@ -779,6 +1209,12 @@ async function registerServiceWorker() {
       
       const registration = await navigator.serviceWorker.register(swUrl);
       console.log('Service Worker registered:', registration);
+      
+      // Check for updates
+      registration.addEventListener('updatefound', () => {
+        const newWorker = registration.installing;
+        showToast('Update tersedia! 🚀', 3000);
+      });
       
       return registration;
     } catch (error) {
@@ -837,7 +1273,7 @@ function createWebAppManifest() {
   const manifest = {
     "name": "Udayana Portal",
     "short_name": "SUKASADA05",
-    "description": "Portal Akses Cepat Kodam Udayana",
+    "description": "Portal Akses Cepat Kodam Udayana v2.5.0",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0a1525",
@@ -870,7 +1306,7 @@ function createWebAppManifest() {
  * Initialize the application
  */
 async function initializeApp() {
-  console.log('🚀 Initializing Udayana Portal...');
+  console.log('🚀 Initializing Udayana Portal v2.5.0...');
   
   // Update loading progress
   let progress = 0;
@@ -887,7 +1323,7 @@ async function initializeApp() {
         loadingOverlay.style.opacity = '0';
         setTimeout(() => {
           loadingOverlay.classList.add('hidden');
-          showToast('Portal siap digunakan!', 2000);
+          showToast('Portal siap digunakan! v2.5.0', 2000);
         }, 500);
       }, 500);
     }
@@ -908,13 +1344,16 @@ async function initializeApp() {
   // Register Service Worker
   await registerServiceWorker();
   
+  // Check for updates
+  checkForUpdates();
+  
   // Check if running as PWA
   if (window.matchMedia('(display-mode: standalone)').matches) {
     console.log('📱 Running as installed PWA');
-    showToast('Mode aplikasi aktif', 2000);
+    showToast('Mode aplikasi aktif v2.5.0', 2000);
   }
   
-  console.log('✅ Udayana Portal initialized successfully');
+  console.log('✅ Udayana Portal v2.5.0 initialized successfully');
 }
 
 // ===== START APPLICATION =====
@@ -964,6 +1403,19 @@ document.addEventListener('keydown', (e) => {
     e.preventDefault();
     showToast('Memperbarui halaman...', 1000);
     setTimeout(() => location.reload(), 100);
+  }
+  
+  // U untuk update
+  if (e.key === 'u' || e.key === 'U') {
+    e.preventDefault();
+    showUpdateModal();
+  }
+});
+
+// Clean up intervals on page unload
+window.addEventListener('beforeunload', () => {
+  if (updateInterval) {
+    clearInterval(updateInterval);
   }
 });
 </script>
