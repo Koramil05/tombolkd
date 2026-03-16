@@ -10,7 +10,7 @@
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="msapplication-TileColor" content="#000000" />
 <meta name="msapplication-tap-highlight" content="no" />
-<title>Udayana Portal</title>
+<title>Udayana Portal + Preview Pura</title>
 <!-- PWA Icons from GitHub Root -->
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -136,7 +136,7 @@
     background: rgba(255, 215, 0, 0.5);
   }
 
-  /* ===== BUTTONS GRID (3x2) ===== */
+  /* ===== BUTTONS GRID (3x2 + Tombol baru = 7 tombol, diatur 3 kolom) ===== */
   .buttons-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -275,7 +275,8 @@
   }
 
   #btn3 .button-logo,
-  #btn4 .button-logo {
+  #btn4 .button-logo,
+  #btn7 .button-logo { /* Tambahan untuk tombol baru */
     filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
   }
 
@@ -826,10 +827,19 @@
   <button class="control-btn" id="fullscreenBtn" title="Fullscreen">⛶</button>
 </div>
 
-<!-- Main container dengan grid tombol (6 tombol) -->
+<!-- Main container dengan grid tombol (7 tombol) -->
 <div class="main-container">
   <div class="buttons-grid">
-    <!-- Tombol 1: DUKOPS -->
+    <!-- Tombol 1: PREVIEW PURA (URL yang diminta) -->
+    <button class="portal-button" id="btn7">
+      <div class="logo-container">
+        <!-- Menggunakan emoji candi/kuil sebagai ikon -->
+        <div class="button-logo" style="font-size: 50px; display: flex; align-items: center; justify-content: center;">🛕</div>
+        <span class="button-text">PREVIEW PURA</span>
+      </div>
+    </button>
+    
+    <!-- Tombol 2: DUKOPS -->
     <button class="portal-button" id="btn1">
       <div class="logo-container">
         <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Lambang_Kodam_Udayana.svg" 
@@ -838,7 +848,7 @@
       </div>
     </button>
     
-    <!-- Tombol 2: SHOW -->
+    <!-- Tombol 3: SHOW -->
     <button class="portal-button" id="btn2">
       <div class="logo-container">
         <img src="https://raw.githubusercontent.com/Koramil05/JADWAL/main/LOGO%20KOREM163%20Wirasatya.png" 
@@ -847,7 +857,7 @@
       </div>
     </button>
     
-    <!-- Tombol 3: GOOGLE DRIVE -->
+    <!-- Tombol 4: GOOGLE DRIVE -->
     <button class="portal-button" id="btn3">
       <div class="logo-container">
         <div class="button-logo" style="font-size: 50px; display: flex; align-items: center; justify-content: center;">📁</div>
@@ -855,7 +865,7 @@
       </div>
     </button>
     
-    <!-- Tombol 4: PEMETAAN LAHAN -->
+    <!-- Tombol 5: PEMETAAN LAHAN -->
     <button class="portal-button" id="btn4">
       <div class="logo-container">
         <div class="button-logo" style="font-size: 50px; display: flex; align-items: center; justify-content: center;">🗺️</div>
@@ -863,7 +873,7 @@
       </div>
     </button>
     
-    <!-- Tombol 5: PORTAL KD KMP -->
+    <!-- Tombol 6: PORTAL KD KMP -->
     <button class="portal-button" id="btn5">
       <div class="logo-container">
         <div class="button-logo" style="font-size: 50px; display: flex; align-items: center; justify-content: center;">🌐</div>
@@ -871,7 +881,7 @@
       </div>
     </button>
     
-    <!-- Tombol 6: LAINNYA (Custom) -->
+    <!-- Tombol 7: LAINNYA (Custom) -->
     <button class="portal-button" id="btn6">
       <div class="logo-container">
         <div class="button-logo" style="font-size: 50px; display: flex; align-items: center; justify-content: center;">⭐</div>
@@ -882,7 +892,7 @@
 </div>
 
 <script>
-// ===== UDAYANA PORTAL - DENGAN FITUR UPDATE =====
+// ===== UDAYANA PORTAL - DENGAN FITUR UPDATE + TOMBOL PREVIEWPURA =====
 
 // DOM Elements
 const loadingOverlay = document.getElementById('loadingOverlay');
@@ -901,8 +911,13 @@ const updateProgress = document.getElementById('updateProgress');
 const progressFill = document.getElementById('progressFill');
 const progressText = document.getElementById('progressText');
 
-// Configuration for 6 buttons
+// Configuration for 7 buttons (menambahkan btn7)
 const BUTTON_CONFIG = {
+  btn7: { 
+    url: "https://koramil05.github.io/previewpura/", 
+    name: "PREVIEW PURA",
+    color: "rgba(255, 215, 0, 0.8)" // emas
+  },
   btn1: { 
     url: "https://koramil05.github.io/DUKOPS/", 
     name: "DUKOPS",
@@ -1085,7 +1100,7 @@ function setupButtons() {
     const config = BUTTON_CONFIG[btnId];
     
     button.addEventListener('click', function(e) {
-      // Skip for btn6 (custom)
+      // Skip for btn6 (custom) - but we allow btn7 to open normally
       if (btnId === 'btn6') {
         showToast('Tombol ini dapat dikustomisasi sesuai kebutuhan');
         return;
@@ -1129,7 +1144,7 @@ function setupButtons() {
 function setupControlButtons() {
   // Info button
   infoBtn.addEventListener('click', () => {
-    showToast('UDAYANA PORTAL v2.5.0 - Akses cepat sistem', 4000);
+    showToast('UDAYANA PORTAL v2.5.0 - Akses cepat sistem (dengan Preview Pura)', 4000);
   });
   
   // Fullscreen button
@@ -1273,7 +1288,7 @@ function createWebAppManifest() {
   const manifest = {
     "name": "Udayana Portal",
     "short_name": "SUKASADA05",
-    "description": "Portal Akses Cepat Kodam Udayana v2.5.0",
+    "description": "Portal Akses Cepat Kodam Udayana v2.5.0 + Preview Pura",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0a1525",
@@ -1306,7 +1321,7 @@ function createWebAppManifest() {
  * Initialize the application
  */
 async function initializeApp() {
-  console.log('🚀 Initializing Udayana Portal v2.5.0...');
+  console.log('🚀 Initializing Udayana Portal v2.5.0 + Preview Pura...');
   
   // Update loading progress
   let progress = 0;
@@ -1323,7 +1338,7 @@ async function initializeApp() {
         loadingOverlay.style.opacity = '0';
         setTimeout(() => {
           loadingOverlay.classList.add('hidden');
-          showToast('Portal siap digunakan! v2.5.0', 2000);
+          showToast('Portal siap digunakan! PREVIEW PURA tersedia', 2000);
         }, 500);
       }, 500);
     }
@@ -1384,8 +1399,8 @@ window.addEventListener('offline', () => {
 
 // Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
-  // Ctrl/Cmd + 1-6 untuk tombol
-  if ((e.ctrlKey || e.metaKey) && e.key >= '1' && e.key <= '6') {
+  // Ctrl/Cmd + 1-7 untuk tombol (7 tombol)
+  if ((e.ctrlKey || e.metaKey) && e.key >= '1' && e.key <= '7') {
     e.preventDefault();
     const buttonId = `btn${e.key}`;
     const button = document.getElementById(buttonId);
