@@ -276,7 +276,7 @@
 
   #btn3 .button-logo,
   #btn4 .button-logo,
-  #btn7 .button-logo { /* Tambahan untuk tombol baru */
+  #btn7 .button-logo {
     filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
   }
 
@@ -833,7 +833,6 @@
     <!-- Tombol 1: PREVIEW PURA (URL yang diminta) -->
     <button class="portal-button" id="btn7">
       <div class="logo-container">
-        <!-- Menggunakan emoji candi/kuil sebagai ikon -->
         <div class="button-logo" style="font-size: 50px; display: flex; align-items: center; justify-content: center;">🛕</div>
         <span class="button-text">PREVIEW PURA</span>
       </div>
@@ -881,7 +880,7 @@
       </div>
     </button>
     
-    <!-- Tombol 7: LAINNYA (Custom) -->
+    <!-- Tombol 7: LAINNYA (Custom) dengan URL baru -->
     <button class="portal-button" id="btn6">
       <div class="logo-container">
         <div class="button-logo" style="font-size: 50px; display: flex; align-items: center; justify-content: center;">⭐</div>
@@ -893,6 +892,7 @@
 
 <script>
 // ===== UDAYANA PORTAL - DENGAN FITUR UPDATE + TOMBOL PREVIEWPURA =====
+// TOMBOL LAINNYA SEKARANG MENGARAH KE https://koramil05.github.io/RH/
 
 // DOM Elements
 const loadingOverlay = document.getElementById('loadingOverlay');
@@ -911,12 +911,12 @@ const updateProgress = document.getElementById('updateProgress');
 const progressFill = document.getElementById('progressFill');
 const progressText = document.getElementById('progressText');
 
-// Configuration for 7 buttons (menambahkan btn7)
+// Configuration for 7 buttons - btn6 sekarang mengarah ke URL yang diminta
 const BUTTON_CONFIG = {
   btn7: { 
     url: "https://koramil05.github.io/previewpura/", 
     name: "PREVIEW PURA",
-    color: "rgba(255, 215, 0, 0.8)" // emas
+    color: "rgba(255, 215, 0, 0.8)"
   },
   btn1: { 
     url: "https://koramil05.github.io/DUKOPS/", 
@@ -944,7 +944,7 @@ const BUTTON_CONFIG = {
     color: "rgba(100, 255, 200, 0.8)"
   },
   btn6: { 
-    url: "#",
+    url: "https://koramil05.github.io/RH/",      // <-- URL baru untuk tombol LAINNYA
     name: "LAINNYA",
     color: "rgba(180, 180, 255, 0.8)"
   }
@@ -956,28 +956,18 @@ let updateInterval;
 
 // ===== UTILITY FUNCTIONS =====
 
-/**
- * Show toast notification
- */
 function showToast(message, duration = 3000) {
   toast.textContent = message;
   toast.classList.add('show');
-  
   setTimeout(() => {
     toast.classList.remove('show');
   }, duration);
 }
 
-/**
- * Update loading progress
- */
 function updateLoadingProgress(percent) {
   statusProgress.style.width = `${percent}%`;
 }
 
-/**
- * Create simple ripple effect
- */
 function createRipple(event) {
   const button = event.currentTarget;
   const circle = document.createElement('span');
@@ -999,15 +989,11 @@ function createRipple(event) {
 
 // ===== UPDATE FUNCTIONALITY =====
 
-/**
- * Show update modal
- */
 function showUpdateModal() {
   updateOverlay.classList.add('show');
   updateModal.classList.add('show');
   updateBadge.style.display = 'none';
   
-  // Auto hide after 30 seconds
   setTimeout(() => {
     if (updateModal.classList.contains('show')) {
       hideUpdateModal();
@@ -1016,24 +1002,15 @@ function showUpdateModal() {
   }, 30000);
 }
 
-/**
- * Hide update modal
- */
 function hideUpdateModal() {
   updateOverlay.classList.remove('show');
   updateModal.classList.remove('show');
   updateProgress.classList.remove('show');
 }
 
-/**
- * Simulate update download
- */
 function simulateUpdate() {
-  // Hide buttons
   laterBtn.style.display = 'none';
   updateNowBtn.style.display = 'none';
-  
-  // Show progress
   updateProgress.classList.add('show');
   
   let progress = 0;
@@ -1051,81 +1028,55 @@ function simulateUpdate() {
       setTimeout(() => {
         hideUpdateModal();
         showToast('Update berhasil! Aplikasi siap digunakan 🎉', 4000);
-        
-        // Reset buttons
         laterBtn.style.display = 'block';
         updateNowBtn.style.display = 'block';
-        
-        // Hide badge permanently
         updateBadge.style.display = 'none';
-        
-        // Save to localStorage
         localStorage.setItem('updateShown', 'true');
         localStorage.setItem('updateVersion', '2.5.0');
       }, 1000);
     }
   }, 200);
   
-  // Store interval to clear if needed
   updateInterval = interval;
 }
 
-/**
- * Check for updates
- */
 function checkForUpdates() {
   const lastUpdate = localStorage.getItem('updateShown');
   const lastVersion = localStorage.getItem('updateVersion');
   
-  // Show update if not shown before or version changed
   if (!lastUpdate || lastVersion !== '2.5.0') {
-    // Show after 5 seconds
     setTimeout(() => {
       showUpdateModal();
     }, 5000);
   } else {
-    // Hide badge if update already installed
     updateBadge.style.display = 'none';
   }
 }
 
 // ===== BUTTON HANDLERS =====
-
-/**
- * Setup all button event listeners
- */
+// Sekarang semua tombol (termasuk btn6) akan membuka URL yang sesuai tanpa pengecualian
 function setupButtons() {
   Object.keys(BUTTON_CONFIG).forEach(btnId => {
     const button = document.getElementById(btnId);
     const config = BUTTON_CONFIG[btnId];
     
     button.addEventListener('click', function(e) {
-      // Skip for btn6 (custom) - but we allow btn7 to open normally
-      if (btnId === 'btn6') {
-        showToast('Tombol ini dapat dikustomisasi sesuai kebutuhan');
-        return;
-      }
-      
       // Ripple effect
       createRipple(e);
       
-      // Disable button temporarily
+      // Disable button sementara
       button.disabled = true;
       
-      // Visual feedback
       const logoContainer = button.querySelector('.logo-container');
       const originalTransform = logoContainer.style.transform;
       logoContainer.style.transform = 'scale(0.95)';
       logoContainer.style.filter = 'brightness(1.2)';
       
-      // Show loading toast
       showToast(`Membuka ${config.name}...`);
       
-      // Open URL after delay
       setTimeout(() => {
         window.open(config.url, '_blank', 'noopener,noreferrer');
         
-        // Reset button after delay
         setTimeout(() => {
           button.disabled = false;
           logoContainer.style.transform = originalTransform;
@@ -1138,16 +1089,11 @@ function setupButtons() {
 
 // ===== CONTROL BUTTONS =====
 
-/**
- * Setup control buttons
- */
 function setupControlButtons() {
-  // Info button
   infoBtn.addEventListener('click', () => {
-    showToast('UDAYANA PORTAL v2.5.0 - Akses cepat sistem (dengan Preview Pura)', 4000);
+    showToast('UDAYANA PORTAL v2.5.0 - Akses cepat sistem (dengan Preview Pura & Lainnya → RH)', 4000);
   });
   
-  // Fullscreen button
   fullscreenBtn.addEventListener('click', () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen();
@@ -1160,17 +1106,13 @@ function setupControlButtons() {
     }
   });
   
-  // Update info button
   updateInfoBtn.addEventListener('click', () => {
     showUpdateModal();
   });
   
-  // Update modal buttons
   laterBtn.addEventListener('click', () => {
     hideUpdateModal();
     showToast('Update akan diingatkan nanti', 2000);
-    
-    // Save to localStorage
     localStorage.setItem('updateLater', 'true');
   });
   
@@ -1178,7 +1120,6 @@ function setupControlButtons() {
     simulateUpdate();
   });
   
-  // Close modal when clicking overlay
   updateOverlay.addEventListener('click', () => {
     hideUpdateModal();
   });
@@ -1186,51 +1127,30 @@ function setupControlButtons() {
 
 // ===== PWA FUNCTIONALITY =====
 
-/**
- * Register Service Worker
- */
 async function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
     try {
-      // Create Service Worker code
       const swCode = `
         const CACHE_NAME = 'udayana-portal-v2.5.0';
-        
-        self.addEventListener('install', (event) => {
-          console.log('[Service Worker] Installing new version...');
-          self.skipWaiting();
-        });
-        
-        self.addEventListener('activate', (event) => {
-          console.log('[Service Worker] Activated');
-          event.waitUntil(clients.claim());
-        });
-        
+        self.addEventListener('install', (event) => { self.skipWaiting(); });
+        self.addEventListener('activate', (event) => { event.waitUntil(clients.claim()); });
         self.addEventListener('fetch', (event) => {
           event.respondWith(
             fetch(event.request)
-              .catch(() => {
-                return new Response('Udayana Portal - Mode Offline', {
-                  headers: { 'Content-Type': 'text/html' }
-                });
-              })
+              .catch(() => new Response('Udayana Portal - Mode Offline', {
+                headers: { 'Content-Type': 'text/html' }
+              }))
           );
         });
       `;
-      
-      // Create blob and register
       const blob = new Blob([swCode], { type: 'application/javascript' });
       const swUrl = URL.createObjectURL(blob);
-      
       const registration = await navigator.serviceWorker.register(swUrl);
       console.log('Service Worker registered:', registration);
       
-      // Check for updates
       registration.addEventListener('updatefound', () => {
-        const newWorker = registration.installing;
         showToast('Update tersedia! 🚀', 3000);
       });
-      
       return registration;
     } catch (error) {
       console.error('Service Worker registration failed:', error);
@@ -1239,76 +1159,50 @@ async function registerServiceWorker() {
   return null;
 }
 
-/**
- * Handle PWA installation
- */
 function setupPWAInstall() {
-  // Before install prompt
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    
-    // Show install button after 3 seconds
     setTimeout(() => {
       if (deferredPrompt) {
         installBtn.style.display = 'block';
-        
         installBtn.addEventListener('click', async () => {
           if (!deferredPrompt) return;
-          
           deferredPrompt.prompt();
           const { outcome } = await deferredPrompt.userChoice;
-          
           if (outcome === 'accepted') {
-            console.log('User accepted PWA install');
             installBtn.style.display = 'none';
             showToast('Aplikasi sedang diinstal...', 2000);
           } else {
             showToast('Instalasi dibatalkan', 2000);
           }
-          
           deferredPrompt = null;
         });
       }
     }, 3000);
   });
   
-  // App installed event
   window.addEventListener('appinstalled', () => {
-    console.log('PWA was installed');
     installBtn.style.display = 'none';
     showToast('Aplikasi berhasil diinstal! 🎉', 3000);
   });
 }
 
-/**
- * Create Web App Manifest dynamically
- */
 function createWebAppManifest() {
   const manifest = {
     "name": "Udayana Portal",
     "short_name": "SUKASADA05",
-    "description": "Portal Akses Cepat Kodam Udayana v2.5.0 + Preview Pura",
+    "description": "Portal Akses Cepat Kodam Udayana v2.5.0 + Preview Pura & RH",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0a1525",
     "theme_color": "#000000",
     "orientation": "portrait",
     "icons": [
-      {
-        "src": "/favicon-32x32.png",
-        "sizes": "32x32",
-        "type": "image/png"
-      },
-      {
-        "src": "/apple-touch-icon.png",
-        "sizes": "180x180",
-        "type": "image/png"
-      }
+      { "src": "/favicon-32x32.png", "sizes": "32x32", "type": "image/png" },
+      { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
     ]
   };
-  
-  // Add manifest to page
   const manifestElement = document.createElement('link');
   manifestElement.rel = 'manifest';
   manifestElement.href = 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify(manifest));
@@ -1317,52 +1211,33 @@ function createWebAppManifest() {
 
 // ===== INITIALIZATION =====
 
-/**
- * Initialize the application
- */
 async function initializeApp() {
-  console.log('🚀 Initializing Udayana Portal v2.5.0 + Preview Pura...');
+  console.log('🚀 Initializing Udayana Portal v2.5.0 + Preview Pura & RH...');
   
-  // Update loading progress
   let progress = 0;
   const loadingInterval = setInterval(() => {
     progress += Math.random() * 15 + 10;
     if (progress > 100) progress = 100;
     updateLoadingProgress(progress);
-    
     if (progress >= 100) {
       clearInterval(loadingInterval);
-      
-      // Hide loading overlay
       setTimeout(() => {
         loadingOverlay.style.opacity = '0';
         setTimeout(() => {
           loadingOverlay.classList.add('hidden');
-          showToast('Portal siap digunakan! PREVIEW PURA tersedia', 2000);
+          showToast('Portal siap digunakan! PREVIEW PURA & LAINNYA (RH) tersedia', 2000);
         }, 500);
       }, 500);
     }
   }, 150);
   
-  // Setup buttons
   setupButtons();
-  
-  // Setup control buttons
   setupControlButtons();
-  
-  // Create Web App Manifest
   createWebAppManifest();
-  
-  // Setup PWA installation
   setupPWAInstall();
-  
-  // Register Service Worker
   await registerServiceWorker();
-  
-  // Check for updates
   checkForUpdates();
   
-  // Check if running as PWA
   if (window.matchMedia('(display-mode: standalone)').matches) {
     console.log('📱 Running as installed PWA');
     showToast('Mode aplikasi aktif v2.5.0', 2000);
@@ -1373,65 +1248,33 @@ async function initializeApp() {
 
 // ===== START APPLICATION =====
 
-// Start when DOM is loaded
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initializeApp);
 } else {
   initializeApp();
 }
 
-// Handle orientation changes
 window.addEventListener('orientationchange', () => {
-  setTimeout(() => {
-    // Force reflow for responsive adjustments
-    window.dispatchEvent(new Event('resize'));
-  }, 300);
+  setTimeout(() => window.dispatchEvent(new Event('resize')), 300);
 });
 
-// Handle online/offline status
-window.addEventListener('online', () => {
-  showToast('Koneksi internet tersedia', 2000);
-});
+window.addEventListener('online', () => showToast('Koneksi internet tersedia', 2000));
+window.addEventListener('offline', () => showToast('Mode offline aktif', 3000));
 
-window.addEventListener('offline', () => {
-  showToast('Mode offline aktif', 3000);
-});
-
-// Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
-  // Ctrl/Cmd + 1-7 untuk tombol (7 tombol)
   if ((e.ctrlKey || e.metaKey) && e.key >= '1' && e.key <= '7') {
     e.preventDefault();
     const buttonId = `btn${e.key}`;
     const button = document.getElementById(buttonId);
     if (button) button.click();
   }
-  
-  // F11 untuk fullscreen
-  if (e.key === 'F11') {
-    e.preventDefault();
-    fullscreenBtn.click();
-  }
-  
-  // F5 untuk refresh
-  if (e.key === 'F5') {
-    e.preventDefault();
-    showToast('Memperbarui halaman...', 1000);
-    setTimeout(() => location.reload(), 100);
-  }
-  
-  // U untuk update
-  if (e.key === 'u' || e.key === 'U') {
-    e.preventDefault();
-    showUpdateModal();
-  }
+  if (e.key === 'F11') { e.preventDefault(); fullscreenBtn.click(); }
+  if (e.key === 'F5') { e.preventDefault(); showToast('Memperbarui halaman...', 1000); setTimeout(() => location.reload(), 100); }
+  if (e.key === 'u' || e.key === 'U') { e.preventDefault(); showUpdateModal(); }
 });
 
-// Clean up intervals on page unload
 window.addEventListener('beforeunload', () => {
-  if (updateInterval) {
-    clearInterval(updateInterval);
-  }
+  if (updateInterval) clearInterval(updateInterval);
 });
 </script>
 </body>
