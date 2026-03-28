@@ -8,17 +8,12 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Udayana Portal" />
 <meta name="mobile-web-app-capable" content="yes" />
-<meta name="msapplication-TileColor" content="#000000" />
-<meta name="msapplication-tap-highlight" content="no" />
-<title>Udayana Portal + Preview Pura</title>
-<!-- PWA Icons from GitHub Root -->
+<title>Udayana Portal | PIN untuk Koramil</title>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
 
 <style>
-  /* ===== RESET & BASE STYLES ===== */
   * { 
     margin: 0; 
     padding: 0; 
@@ -60,14 +55,8 @@
   }
 
   @keyframes gentlePulse {
-    0% { 
-      transform: scale(1);
-      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
-    }
-    100% { 
-      transform: scale(1.05);
-      filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.6));
-    }
+    0% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4)); }
+    100% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.6)); }
   }
 
   .udayana-title {
@@ -79,28 +68,13 @@
     letter-spacing: 2px;
   }
 
-  /* Responsif header */
   @media (max-width: 768px) {
-    .udayana-logo {
-      width: 80px;
-      height: 80px;
-    }
-    
-    .udayana-title {
-      font-size: 18px;
-    }
+    .udayana-logo { width: 80px; height: 80px; }
+    .udayana-title { font-size: 18px; }
   }
-
   @media (max-width: 480px) {
-    .udayana-logo {
-      width: 70px;
-      height: 70px;
-    }
-    
-    .udayana-title {
-      font-size: 16px;
-      letter-spacing: 1px;
-    }
+    .udayana-logo { width: 70px; height: 70px; }
+    .udayana-title { font-size: 16px; }
   }
 
   /* ===== MAIN CONTAINER ===== */
@@ -114,109 +88,40 @@
     padding: 140px 20px 20px;
     position: relative;
     overflow-y: auto;
-    overflow-x: hidden;
   }
 
-  /* Scrollbar styling */
-  .main-container::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  .main-container::-webkit-scrollbar-track {
-    background: rgba(255, 215, 0, 0.1);
-    border-radius: 4px;
-  }
-
-  .main-container::-webkit-scrollbar-thumb {
-    background: rgba(255, 215, 0, 0.3);
-    border-radius: 4px;
-  }
-
-  .main-container::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 215, 0, 0.5);
-  }
-
-  /* ===== BUTTONS GRID (3x2 + Tombol baru = 7 tombol, diatur 3 kolom) ===== */
+  /* GRID 8 TOMBOL */
   .buttons-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 18px;
     width: 100%;
-    max-width: 900px;
+    max-width: 1100px;
     margin-top: 20px;
-    z-index: 10;
     padding-bottom: 20px;
   }
 
-  /* Responsif grid */
-  @media (max-width: 768px) {
-    .buttons-grid {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      max-width: 600px;
-    }
+  @media (max-width: 900px) {
+    .buttons-grid { grid-template-columns: repeat(3, 1fr); max-width: 700px; gap: 14px; }
+  }
+  @media (max-width: 600px) {
+    .buttons-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 400px; }
+    .main-container { padding: 120px 15px 15px; }
   }
 
-  @media (max-width: 480px) {
-    .buttons-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      max-width: 400px;
-    }
-    
-    .main-container {
-      padding: 120px 15px 15px;
-    }
-  }
-
-  /* Landscape mode */
-  @media (max-height: 700px) and (orientation: landscape) {
-    .main-container {
-      padding: 100px 10px 10px;
-      justify-content: flex-start;
-    }
-    
-    .buttons-grid {
-      gap: 10px;
-      max-width: 95%;
-      margin-top: 10px;
-    }
-    
-    .udayana-header {
-      top: 10px;
-    }
-    
-    .udayana-logo {
-      width: 60px;
-      height: 60px;
-    }
-  }
-
-  /* ===== BUTTON STYLES ===== */
   .portal-button {
     position: relative;
     cursor: pointer;
     border: none;
     background: transparent;
-    overflow: visible;
-    transition: all 0.3s ease;
-    z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 140px;
     aspect-ratio: 1/1;
-    text-align: center;
   }
 
-  /* Tombol disabled */
-  .portal-button:disabled {
-    cursor: not-allowed;
-    opacity: 0.7;
-  }
-
-  /* Container logo */
   .logo-container {
     width: 100%;
     height: 100%;
@@ -227,118 +132,40 @@
     border-radius: 18px;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border: 2px solid rgba(255, 255, 255, 0.15);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    overflow: hidden;
-    position: relative;
+    transition: all 0.3s ease;
   }
 
-  .portal-button:hover:not(:disabled) .logo-container { 
-    transform: translateY(-8px) scale(1.05); 
-    background: rgba(0, 0, 0, 0.6);
+  .portal-button:hover .logo-container {
+    transform: translateY(-8px) scale(1.05);
     border-color: rgba(255, 215, 0, 0.5);
-    box-shadow: 
-      0 15px 35px rgba(0, 0, 0, 0.6),
-      0 0 30px rgba(255, 215, 0, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.2);
   }
 
-  .portal-button:active:not(:disabled) .logo-container {
-    transform: translateY(-4px) scale(1.02);
-    transition: 0.1s;
-  }
-
-  /* Logo di dalam tombol */
   .button-logo {
     width: 70px;
     height: 70px;
     object-fit: contain;
     margin-bottom: 10px;
-    transition: all 0.3s ease;
   }
 
-  /* Warna khusus untuk setiap logo */
-  #btn1 .button-logo {
-    filter: drop-shadow(0 0 15px rgba(0, 180, 255, 0.8));
-  }
-
-  #btn2 .button-logo {
-    filter: drop-shadow(0 0 15px rgba(200, 0, 255, 0.8));
-  }
-
-  #btn5 .button-logo {
-    filter: drop-shadow(0 0 15px rgba(255, 100, 100, 0.8));
-  }
-
-  #btn6 .button-logo {
-    filter: drop-shadow(0 0 15px rgba(100, 255, 200, 0.8));
-  }
-
-  #btn3 .button-logo,
-  #btn4 .button-logo,
-  #btn7 .button-logo {
-    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
-  }
-
-  .portal-button:hover:not(:disabled) .button-logo {
-    transform: scale(1.15) rotate(5deg);
-  }
-
-  /* Text under logo */
   .button-text {
     font-size: 14px;
     font-weight: bold;
-    line-height: 1.3;
     color: white;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-    margin-top: 8px;
-    padding: 0 5px;
     text-align: center;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 
   @media (max-width: 768px) {
-    .portal-button {
-      min-height: 120px;
-    }
-    
-    .logo-container {
-      border-radius: 15px;
-    }
-    
-    .button-logo {
-      width: 60px;
-      height: 60px;
-    }
-    
-    .button-text {
-      font-size: 12px;
-      letter-spacing: 1.2px;
-    }
+    .portal-button { min-height: 120px; }
+    .button-logo { width: 60px; height: 60px; }
+    .button-text { font-size: 12px; }
   }
 
-  @media (max-width: 480px) {
-    .portal-button {
-      min-height: 110px;
-    }
-    
-    .button-logo {
-      width: 50px;
-      height: 50px;
-    }
-    
-    .button-text {
-      font-size: 11px;
-      letter-spacing: 1px;
-    }
-  }
-
-  /* ===== CONTROL BUTTONS ===== */
+  /* Control Buttons */
   .control-buttons {
     position: fixed;
     bottom: 20px;
@@ -347,7 +174,6 @@
     gap: 12px;
     z-index: 1000;
   }
-
   .control-btn {
     width: 48px;
     height: 48px;
@@ -361,296 +187,10 @@
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: all 0.3s ease;
   }
+  .control-btn:hover { transform: scale(1.1); background: rgba(255, 215, 0, 0.3); }
 
-  .control-btn:hover {
-    transform: scale(1.1);
-    background: rgba(255, 215, 0, 0.3);
-    border-color: rgba(255, 215, 0, 0.8);
-  }
-
-  /* ===== UPDATE BADGE & NOTIFICATION ===== */
-  .update-badge {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: linear-gradient(135deg, #ffd700, #ff8c00);
-    color: #000;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 4px 8px;
-    border-radius: 20px;
-    z-index: 100;
-    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
-    animation: pulse 2s infinite;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    letter-spacing: 0.5px;
-  }
-
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-
-  /* Update Modal */
-  .update-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
-    background: linear-gradient(145deg, #1a2635, #0f1a2a);
-    padding: 25px;
-    border-radius: 25px;
-    z-index: 10001;
-    max-width: 380px;
-    width: 90%;
-    border: 2px solid rgba(255, 215, 0, 0.3);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.2);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    backdrop-filter: blur(20px);
-    color: white;
-  }
-
-  .update-modal.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  .update-modal-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid rgba(255, 215, 0, 0.2);
-    padding-bottom: 15px;
-  }
-
-  .update-icon {
-    font-size: 40px;
-    animation: gentlePulse 2s infinite;
-  }
-
-  .update-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #ffd700;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-  }
-
-  .update-version {
-    background: rgba(255, 215, 0, 0.15);
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 14px;
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    display: inline-block;
-    margin-bottom: 15px;
-  }
-
-  .update-changelog {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 15px;
-    padding: 18px;
-    margin: 20px 0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .changelog-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-    font-size: 15px;
-    line-height: 1.4;
-  }
-
-  .changelog-item:last-child {
-    margin-bottom: 0;
-  }
-
-  .changelog-icon {
-    font-size: 20px;
-    min-width: 28px;
-    text-align: center;
-  }
-
-  .changelog-text {
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  .update-buttons {
-    display: flex;
-    gap: 12px;
-    margin-top: 25px;
-  }
-
-  .update-btn {
-    flex: 1;
-    padding: 14px 20px;
-    border: none;
-    border-radius: 15px;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .update-btn-primary {
-    background: linear-gradient(145deg, #ffd700, #ff8c00);
-    color: #000;
-    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
-  }
-
-  .update-btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
-  }
-
-  .update-btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    backdrop-filter: blur(5px);
-  }
-
-  .update-btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 215, 0, 0.6);
-  }
-
-  /* Update progress */
-  .update-progress {
-    margin-top: 20px;
-    display: none;
-  }
-
-  .update-progress.show {
-    display: block;
-  }
-
-  .progress-bar {
-    width: 100%;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    overflow: hidden;
-    margin: 10px 0;
-  }
-
-  .progress-fill {
-    width: 0%;
-    height: 100%;
-    background: linear-gradient(90deg, #ffd700, #ff8c00);
-    border-radius: 4px;
-    transition: width 0.3s ease;
-  }
-
-  .progress-text {
-    font-size: 14px;
-    color: #ffd700;
-    text-align: center;
-  }
-
-  /* Update overlay */
-  .update-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(8px);
-    z-index: 10000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-  }
-
-  .update-overlay.show {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  /* ===== LOADING OVERLAY ===== */
-  .loading-overlay {
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(135deg, #0a1525 0%, #071121 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    flex-direction: column;
-    gap: 25px;
-    transition: opacity 0.5s ease;
-  }
-
-  .loading-overlay.hidden {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  .loading-logo {
-    width: 120px;
-    height: 120px;
-    filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8));
-    animation: gentlePulse 2s infinite alternate;
-  }
-
-  .loading-text {
-    color: #ffd700;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-  }
-
-  /* Status bar untuk loading */
-  .status-bar {
-    width: 200px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-    overflow: hidden;
-    margin-top: 10px;
-  }
-
-  .status-progress {
-    width: 0%;
-    height: 100%;
-    background: linear-gradient(90deg, #ffd700, #ff8c00);
-    border-radius: 2px;
-    transition: width 0.3s ease;
-  }
-
-  /* ===== SIMPLE RIPPLE EFFECT ===== */
-  .ripple {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(0);
-    animation: ripple-animation 0.6s linear;
-  }
-
-  @keyframes ripple-animation {
-    to {
-      transform: scale(4);
-      opacity: 0;
-    }
-  }
-
-  /* ===== TOAST NOTIFICATION ===== */
+  /* Toast */
   .toast {
     position: fixed;
     bottom: 80px;
@@ -667,221 +207,257 @@
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 215, 0, 0.3);
-    text-align: center;
-    max-width: 90%;
+    white-space: nowrap;
   }
+  .toast.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 
-  .toast.show {
+  /* Loading Overlay */
+  .loading-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #0a1525 0%, #071121 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    flex-direction: column;
+    gap: 25px;
+    transition: opacity 0.5s ease;
+  }
+  .loading-overlay.hidden { opacity: 0; visibility: hidden; }
+  .loading-logo { width: 120px; height: 120px; filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8)); animation: gentlePulse 2s infinite alternate; }
+  .status-bar { width: 200px; height: 4px; background: rgba(255, 255, 255, 0.1); border-radius: 2px; overflow: hidden; }
+  .status-progress { width: 0%; height: 100%; background: linear-gradient(90deg, #ffd700, #ff8c00); transition: width 0.3s ease; }
+
+  /* ===== PIN MODAL KHUSUS KORAMIL ===== */
+  .pin-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 20000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  .pin-modal-overlay.show {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(0);
   }
-
-  /* ===== INSTALL BUTTON ===== */
-  .install-button {
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    padding: 12px 20px;
-    background: linear-gradient(145deg, rgba(255, 215, 0, 0.9), rgba(255, 140, 0, 0.9));
-    color: black;
-    border: none;
-    border-radius: 25px;
+  .pin-modal {
+    background: linear-gradient(145deg, #1a2635, #0f1a2a);
+    border-radius: 48px;
+    padding: 35px 30px;
+    text-align: center;
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.3);
+    width: 90%;
+    max-width: 380px;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+  }
+  .pin-modal-overlay.show .pin-modal {
+    transform: scale(1);
+  }
+  .pin-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+  }
+  .pin-title-modal {
+    color: #ffd700;
+    font-size: 26px;
     font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .pin-sub-modal {
+    color: rgba(255, 255, 255, 0.7);
     font-size: 14px;
+    margin-bottom: 25px;
+  }
+  .pin-input-field {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 215, 0, 0.4);
+    border-radius: 60px;
+    padding: 16px 20px;
+    width: 100%;
+    font-size: 28px;
+    text-align: center;
+    letter-spacing: 8px;
+    color: #ffd700;
+    font-weight: bold;
+    outline: none;
+    font-family: monospace;
+    margin-bottom: 20px;
+  }
+  .pin-input-field:focus {
+    border-color: #ffd700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+  .pin-numpad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .numpad-key {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 60px;
+    padding: 14px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffd700;
     cursor: pointer;
-    z-index: 10000;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    transition: all 0.3s ease;
-    display: none;
+    transition: all 0.2s ease;
   }
-
-  .install-button:hover {
-    transform: scale(1.1);
-  }
-
-  /* Update info button */
-  .update-info-btn {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+  .numpad-key:active { transform: scale(0.95); background: rgba(255, 215, 0, 0.2); }
+  .pin-modal-btn {
     background: linear-gradient(145deg, #ffd700, #ff8c00);
     border: none;
+    padding: 14px 20px;
+    border-radius: 60px;
+    font-size: 18px;
+    font-weight: bold;
     color: #000;
-    font-size: 24px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+    width: 100%;
+    margin-top: 10px;
     transition: all 0.3s ease;
-    z-index: 1000;
-    animation: gentlePulse 2s infinite;
   }
-
-  .update-info-btn:hover {
-    transform: scale(1.15) rotate(90deg);
+  .pin-modal-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5); }
+  .pin-error-msg {
+    color: #ff6b6b;
+    font-size: 13px;
+    margin-top: 12px;
+    min-height: 36px;
   }
-
-  .update-info-btn .badge {
+  .pin-close {
     position: absolute;
-    top: -5px;
-    right: -5px;
-    background: #ff4444;
-    color: white;
-    font-size: 12px;
-    padding: 2px 6px;
-    border-radius: 10px;
-    animation: pulse 2s infinite;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.2s;
   }
+  .pin-close:hover { color: #ffd700; transform: scale(1.1); }
 </style>
 </head>
-
 <body>
-<!-- Loading overlay -->
+
+<!-- Loading Overlay -->
 <div class="loading-overlay" id="loadingOverlay">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Lambang_Kodam_Udayana.svg" 
-       alt="Udayana" class="loading-logo">
-  <div class="loading-text">UDAYANA PORTAL</div>
-  <div class="status-bar">
-    <div class="status-progress" id="statusProgress"></div>
-  </div>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Lambang_Kodam_Udayana.svg" alt="Udayana" class="loading-logo">
+  <div class="status-bar"><div class="status-progress" id="statusProgress"></div></div>
 </div>
 
 <!-- Toast Notification -->
 <div class="toast" id="toast"></div>
 
-<!-- Install Button (akan muncul otomatis) -->
-<button class="install-button" id="installBtn">📲 Install App</button>
-
-<!-- Update Info Button -->
-<button class="update-info-btn" id="updateInfoBtn" title="Info Update">
-  🚀
-  <span class="badge" id="updateBadge">1</span>
-</button>
-
-<!-- Update Modal -->
-<div class="update-overlay" id="updateOverlay"></div>
-<div class="update-modal" id="updateModal">
-  <div class="update-modal-header">
-    <span class="update-icon">🚀</span>
-    <span class="update-title">UPDATE TERSEDIA!</span>
-  </div>
-  
-  <div class="update-version">Versi 2.5.0</div>
-  
-  <div class="update-changelog">
-    <div class="changelog-item">
-      <span class="changelog-icon">✨</span>
-      <span class="changelog-text">Tampilan baru yang lebih modern dan responsif</span>
+<!-- PIN MODAL KHUSUS KORAMIL -->
+<div class="pin-modal-overlay" id="pinModalOverlay">
+  <div class="pin-modal">
+    <div class="pin-close" id="pinCloseBtn">&times;</div>
+    <div class="pin-icon">🔐</div>
+    <div class="pin-title-modal">KORAMIL</div>
+    <div class="pin-sub-modal">Masukkan PIN untuk mengakses</div>
+    <input type="password" id="koramilPinInput" class="pin-input-field" maxlength="3" inputmode="numeric" placeholder="***">
+    <div class="pin-numpad" id="koramilNumpad">
+      <button class="numpad-key" data-num="1">1</button>
+      <button class="numpad-key" data-num="2">2</button>
+      <button class="numpad-key" data-num="3">3</button>
+      <button class="numpad-key" data-num="4">4</button>
+      <button class="numpad-key" data-num="5">5</button>
+      <button class="numpad-key" data-num="6">6</button>
+      <button class="numpad-key" data-num="7">7</button>
+      <button class="numpad-key" data-num="8">8</button>
+      <button class="numpad-key" data-num="9">9</button>
+      <button class="numpad-key" data-num="clear">⌫</button>
+      <button class="numpad-key" data-num="0">0</button>
+      <button class="numpad-key" data-num="enter">✓</button>
     </div>
-    <div class="changelog-item">
-      <span class="changelog-icon">🚀</span>
-      <span class="changelog-text">Performa 2x lebih cepat dengan optimasi loading</span>
-    </div>
-    <div class="changelog-item">
-      <span class="changelog-icon">🔒</span>
-      <span class="changelog-text">Keamanan ditingkatkan dengan enkripsi data</span>
-    </div>
-    <div class="changelog-item">
-      <span class="changelog-icon">🌙</span>
-      <span class="changelog-text">Mode gelap otomatis mengikuti sistem</span>
-    </div>
-    <div class="changelog-item">
-      <span class="changelog-icon">📱</span>
-      <span class="changelog-text">Navigasi lebih mudah di perangkat mobile</span>
-    </div>
-    <div class="changelog-item">
-      <span class="changelog-icon">🐛</span>
-      <span class="changelog-text">Perbaikan bug pada beberapa tombol</span>
-    </div>
-  </div>
-  
-  <div class="update-progress" id="updateProgress">
-    <div class="progress-bar">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
-    <div class="progress-text" id="progressText">Mengunduh update...</div>
-  </div>
-  
-  <div class="update-buttons">
-    <button class="update-btn update-btn-secondary" id="laterBtn">Nanti</button>
-    <button class="update-btn update-btn-primary" id="updateNowBtn">UPDATE NOW</button>
+    <button class="pin-modal-btn" id="pinConfirmBtn">VERIFIKASI</button>
+    <div class="pin-error-msg" id="pinErrorMsg"></div>
   </div>
 </div>
 
-<!-- Header dengan logo Udayana -->
+<!-- Header -->
 <div class="udayana-header">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Lambang_Kodam_Udayana.svg" 
-       alt="Lambang Kodam Udayana" class="udayana-logo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Lambang_Kodam_Udayana.svg" alt="Lambang Kodam Udayana" class="udayana-logo">
   <div class="udayana-title">UDAYANA PORTAL</div>
 </div>
 
-<!-- Control buttons -->
+<!-- Control Buttons -->
 <div class="control-buttons">
-  <button class="control-btn" id="infoBtn" title="Info">ⓘ</button>
-  <button class="control-btn" id="fullscreenBtn" title="Fullscreen">⛶</button>
+  <button class="control-btn" id="infoBtn">ⓘ</button>
+  <button class="control-btn" id="fullscreenBtn">⛶</button>
 </div>
 
-<!-- Main container dengan grid tombol (7 tombol) -->
-<div class="main-container">
+<!-- Main Container dengan 8 Tombol -->
+<div class="main-container" id="mainContainer">
   <div class="buttons-grid">
-    <!-- Tombol 1: PREVIEW PURA (URL yang diminta) -->
-    <button class="portal-button" id="btn7">
+    <!-- PREVIEW PURA (langsung) -->
+    <button class="portal-button" id="btnPreviewPura">
       <div class="logo-container">
         <div class="button-logo" style="font-size: 50px; display: flex; align-items: center; justify-content: center;">🛕</div>
         <span class="button-text">PREVIEW PURA</span>
       </div>
     </button>
     
-    <!-- Tombol 2: DUKOPS -->
-    <button class="portal-button" id="btn1">
+    <!-- KORAMIL (BUTTON DENGAN PIN) -->
+    <button class="portal-button" id="btnKoramil">
       <div class="logo-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Lambang_Kodam_Udayana.svg" 
-             alt="DUKOPS" class="button-logo">
+        <div class="button-logo" style="font-size: 50px; display: flex; align-items: center; justify-content: center;">🏛️</div>
+        <span class="button-text">KORAMIL 🔒</span>
+      </div>
+    </button>
+    
+    <!-- DUKOPS -->
+    <button class="portal-button" id="btnDukops">
+      <div class="logo-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Lambang_Kodam_Udayana.svg" alt="DUKOPS" class="button-logo">
         <span class="button-text">DUKOPS</span>
       </div>
     </button>
     
-    <!-- Tombol 3: SHOW -->
-    <button class="portal-button" id="btn2">
+    <!-- SHOW LPST05 -->
+    <button class="portal-button" id="btnShow">
       <div class="logo-container">
-        <img src="https://raw.githubusercontent.com/Koramil05/JADWAL/main/LOGO%20KOREM163%20Wirasatya.png" 
-             alt="SHOW" class="button-logo">
+        <img src="https://raw.githubusercontent.com/Koramil05/JADWAL/main/LOGO%20KOREM163%20Wirasatya.png" alt="SHOW" class="button-logo">
         <span class="button-text">SHOW</span>
       </div>
     </button>
     
-    <!-- Tombol 4: GOOGLE DRIVE -->
-    <button class="portal-button" id="btn3">
+    <!-- GOOGLE DRIVE -->
+    <button class="portal-button" id="btnDrive">
       <div class="logo-container">
         <div class="button-logo" style="font-size: 50px; display: flex; align-items: center; justify-content: center;">📁</div>
         <span class="button-text">GOOGLE DRIVE</span>
       </div>
     </button>
     
-    <!-- Tombol 5: PEMETAAN LAHAN -->
-    <button class="portal-button" id="btn4">
+    <!-- PEMETAAN LAHAN -->
+    <button class="portal-button" id="btnPemetaan">
       <div class="logo-container">
         <div class="button-logo" style="font-size: 50px; display: flex; align-items: center; justify-content: center;">🗺️</div>
         <span class="button-text">PEMETAAN LAHAN</span>
       </div>
     </button>
     
-    <!-- Tombol 6: PORTAL KD KMP -->
-    <button class="portal-button" id="btn5">
+    <!-- PORTAL KDKMP -->
+    <button class="portal-button" id="btnPortal">
       <div class="logo-container">
         <div class="button-logo" style="font-size: 50px; display: flex; align-items: center; justify-content: center;">🌐</div>
         <span class="button-text">PORTAL KDKMP</span>
       </div>
     </button>
     
-    <!-- Tombol 7: DAPERS -->
-    <button class="portal-button" id="btn6">
+    <!-- DAPERS (RH) -->
+    <button class="portal-button" id="btnDapers">
       <div class="logo-container">
         <div class="button-logo" style="font-size: 50px; display: flex; align-items: center; justify-content: center;">⭐</div>
         <span class="button-text">DAPERS</span>
@@ -891,390 +467,249 @@
 </div>
 
 <script>
-// ===== UDAYANA PORTAL - DENGAN FITUR UPDATE + TOMBOL PREVIEWPURA =====
-// TOMBOL LAINNYA SEKARANG MENGARAH KE https://koramil05.github.io/RH/
+// KONFIGURASI URL
+const URLS = {
+  previewPura: "https://koramil05.github.io/previewpura/",
+  koramil: "https://koramil05.github.io/PURA-KORAMIL/",
+  dukops: "https://koramil05.github.io/DUKOPS/",
+  show: "https://koramil05.github.io/LPST05/",
+  drive: "https://drive.google.com/drive/folders/1I5wVeLcrSS2sjlaRLCftwd9JPfbNri0l",
+  pemetaan: "https://pemetaan-lahan.portalkdkmp.id",
+  portal: "https://portalkdkmp.id/",
+  dapers: "https://koramil05.github.io/RH/"
+};
+
+const KORAMIL_PIN = "321";
 
 // DOM Elements
 const loadingOverlay = document.getElementById('loadingOverlay');
 const statusProgress = document.getElementById('statusProgress');
 const toast = document.getElementById('toast');
-const installBtn = document.getElementById('installBtn');
 const infoBtn = document.getElementById('infoBtn');
 const fullscreenBtn = document.getElementById('fullscreenBtn');
-const updateModal = document.getElementById('updateModal');
-const updateOverlay = document.getElementById('updateOverlay');
-const updateInfoBtn = document.getElementById('updateInfoBtn');
-const updateBadge = document.getElementById('updateBadge');
-const laterBtn = document.getElementById('laterBtn');
-const updateNowBtn = document.getElementById('updateNowBtn');
-const updateProgress = document.getElementById('updateProgress');
-const progressFill = document.getElementById('progressFill');
-const progressText = document.getElementById('progressText');
 
-// Configuration for 7 buttons - btn6 sekarang mengarah ke URL yang diminta
-const BUTTON_CONFIG = {
-  btn7: { 
-    url: "https://koramil05.github.io/previewpura/", 
-    name: "PREVIEW PURA",
-    color: "rgba(255, 215, 0, 0.8)"
-  },
-  btn1: { 
-    url: "https://koramil05.github.io/DUKOPS/", 
-    name: "DUKOPS",
-    color: "rgba(0, 180, 255, 0.8)"
-  },
-  btn2: { 
-    url: "https://koramil05.github.io/LPST05/", 
-    name: "LPST05",
-    color: "rgba(200, 0, 255, 0.8)"
-  },
-  btn3: { 
-    url: "https://drive.google.com/drive/folders/1I5wVeLcrSS2sjlaRLCftwd9JPfbNri0l", 
-    name: "GOOGLE DRIVE",
-    color: "rgba(255, 215, 0, 0.8)"
-  },
-  btn4: { 
-    url: "https://pemetaan-lahan.portalkdkmp.id",
-    name: "PEMETAAN LAHAN",
-    color: "rgba(255, 100, 100, 0.8)"
-  },
-  btn5: { 
-    url: "https://portalkdkmp.id/",
-    name: "PORTAL KDKMP",
-    color: "rgba(100, 255, 200, 0.8)"
-  },
-  btn6: { 
-    url: "https://koramil05.github.io/RH/",      // <-- URL baru untuk tombol LAINNYA
-    name: "DAPERS",
-    color: "rgba(180, 180, 255, 0.8)"
-  }
-};
+// PIN Modal Elements
+const pinModalOverlay = document.getElementById('pinModalOverlay');
+const koramilPinInput = document.getElementById('koramilPinInput');
+const pinErrorMsg = document.getElementById('pinErrorMsg');
+const pinConfirmBtn = document.getElementById('pinConfirmBtn');
+const pinCloseBtn = document.getElementById('pinCloseBtn');
 
-// PWA Variables
-let deferredPrompt;
-let updateInterval;
+let pendingKoramilUrl = null;
 
-// ===== UTILITY FUNCTIONS =====
-
-function showToast(message, duration = 3000) {
+function showToastMessage(message, duration = 3000) {
   toast.textContent = message;
   toast.classList.add('show');
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, duration);
+  setTimeout(() => toast.classList.remove('show'), duration);
 }
 
 function updateLoadingProgress(percent) {
   statusProgress.style.width = `${percent}%`;
 }
 
-function createRipple(event) {
-  const button = event.currentTarget;
-  const circle = document.createElement('span');
-  const diameter = Math.max(button.clientWidth, button.clientHeight);
-  const radius = diameter / 2;
-  
-  circle.style.width = circle.style.height = `${diameter}px`;
-  circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
-  circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
-  circle.classList.add('ripple');
-  
-  const ripple = button.getElementsByClassName('ripple')[0];
-  if (ripple) {
-    ripple.remove();
-  }
-  
-  button.appendChild(circle);
-}
-
-// ===== UPDATE FUNCTIONALITY =====
-
-function showUpdateModal() {
-  updateOverlay.classList.add('show');
-  updateModal.classList.add('show');
-  updateBadge.style.display = 'none';
-  
+// Buka URL dengan efek loading ringan
+function openUrl(url, name) {
+  showToastMessage(`Membuka ${name}...`);
   setTimeout(() => {
-    if (updateModal.classList.contains('show')) {
-      hideUpdateModal();
-      showToast('Update dapat diakses melalui tombol 🚀', 3000);
-    }
-  }, 30000);
-}
-
-function hideUpdateModal() {
-  updateOverlay.classList.remove('show');
-  updateModal.classList.remove('show');
-  updateProgress.classList.remove('show');
-}
-
-function simulateUpdate() {
-  laterBtn.style.display = 'none';
-  updateNowBtn.style.display = 'none';
-  updateProgress.classList.add('show');
-  
-  let progress = 0;
-  const interval = setInterval(() => {
-    progress += Math.random() * 15 + 5;
-    if (progress > 100) progress = 100;
-    
-    progressFill.style.width = `${progress}%`;
-    progressText.textContent = `Mengunduh update... ${Math.floor(progress)}%`;
-    
-    if (progress >= 100) {
-      clearInterval(interval);
-      progressText.textContent = 'Update selesai! ✨';
-      
-      setTimeout(() => {
-        hideUpdateModal();
-        showToast('Update berhasil! Aplikasi siap digunakan 🎉', 4000);
-        laterBtn.style.display = 'block';
-        updateNowBtn.style.display = 'block';
-        updateBadge.style.display = 'none';
-        localStorage.setItem('updateShown', 'true');
-        localStorage.setItem('updateVersion', '2.5.0');
-      }, 1000);
-    }
+    window.open(url, '_blank', 'noopener,noreferrer');
   }, 200);
-  
-  updateInterval = interval;
 }
 
-function checkForUpdates() {
-  const lastUpdate = localStorage.getItem('updateShown');
-  const lastVersion = localStorage.getItem('updateVersion');
-  
-  if (!lastUpdate || lastVersion !== '2.5.0') {
-    setTimeout(() => {
-      showUpdateModal();
-    }, 5000);
+// PIN Modal Functions
+function showPinModal() {
+  koramilPinInput.value = '';
+  pinErrorMsg.textContent = '';
+  pinModalOverlay.classList.add('show');
+  koramilPinInput.focus();
+  pendingKoramilUrl = URLS.koramil;
+}
+
+function hidePinModal() {
+  pinModalOverlay.classList.remove('show');
+  pendingKoramilUrl = null;
+}
+
+function verifyPinAndOpen() {
+  const enteredPin = koramilPinInput.value.trim();
+  if (enteredPin === KORAMIL_PIN) {
+    hidePinModal();
+    openUrl(URLS.koramil, "KORAMIL");
+    showToastMessage("✅ PIN benar! Mengakses Koramil...", 2000);
   } else {
-    updateBadge.style.display = 'none';
+    pinErrorMsg.textContent = "❌ PIN salah! Akses ditolak.";
+    koramilPinInput.value = '';
+    koramilPinInput.style.borderColor = '#ff6b6b';
+    setTimeout(() => {
+      koramilPinInput.style.borderColor = 'rgba(255, 215, 0, 0.4)';
+    }, 500);
+    koramilPinInput.focus();
   }
 }
 
-// ===== BUTTON HANDLERS =====
-// Sekarang semua tombol (termasuk btn6) akan membuka URL yang sesuai tanpa pengecualian
-function setupButtons() {
-  Object.keys(BUTTON_CONFIG).forEach(btnId => {
-    const button = document.getElementById(btnId);
-    const config = BUTTON_CONFIG[btnId];
-    
-    button.addEventListener('click', function(e) {
-      // Ripple effect
-      createRipple(e);
-      
-      // Disable button sementara
-      button.disabled = true;
-      
-      const logoContainer = button.querySelector('.logo-container');
-      const originalTransform = logoContainer.style.transform;
-      logoContainer.style.transform = 'scale(0.95)';
-      logoContainer.style.filter = 'brightness(1.2)';
-      
-      showToast(`Membuka ${config.name}...`);
-      
-      setTimeout(() => {
-        window.open(config.url, '_blank', 'noopener,noreferrer');
-        
-        setTimeout(() => {
-          button.disabled = false;
-          logoContainer.style.transform = originalTransform;
-          logoContainer.style.filter = '';
-        }, 1000);
-      }, 300);
+// Setup Numpad untuk PIN Modal
+function setupKoramilNumpad() {
+  const numpadBtns = document.querySelectorAll('#koramilNumpad .numpad-key');
+  numpadBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const num = btn.getAttribute('data-num');
+      if (num === 'clear') {
+        koramilPinInput.value = koramilPinInput.value.slice(0, -1);
+      } else if (num === 'enter') {
+        verifyPinAndOpen();
+      } else {
+        if (koramilPinInput.value.length < 3) {
+          koramilPinInput.value += num;
+        }
+      }
+      pinErrorMsg.textContent = '';
     });
+  });
+  
+  koramilPinInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      verifyPinAndOpen();
+    }
+  });
+  
+  koramilPinInput.addEventListener('input', (e) => {
+    koramilPinInput.value = koramilPinInput.value.replace(/[^0-9]/g, '').slice(0, 3);
   });
 }
 
-// ===== CONTROL BUTTONS =====
+// Setup semua tombol portal
+function setupButtons() {
+  // Preview Pura (langsung tanpa PIN)
+  const btnPreview = document.getElementById('btnPreviewPura');
+  btnPreview.addEventListener('click', () => {
+    const container = btnPreview.querySelector('.logo-container');
+    container.style.transform = 'scale(0.95)';
+    openUrl(URLS.previewPura, "PREVIEW PURA");
+    setTimeout(() => { container.style.transform = ''; }, 300);
+  });
+  
+  // KORAMIL - BUKA PIN MODAL
+  const btnKoramil = document.getElementById('btnKoramil');
+  btnKoramil.addEventListener('click', () => {
+    const container = btnKoramil.querySelector('.logo-container');
+    container.style.transform = 'scale(0.95)';
+    setTimeout(() => { container.style.transform = ''; }, 300);
+    showPinModal();
+  });
+  
+  // DUKOPS
+  const btnDukops = document.getElementById('btnDukops');
+  btnDukops.addEventListener('click', () => {
+    const container = btnDukops.querySelector('.logo-container');
+    container.style.transform = 'scale(0.95)';
+    openUrl(URLS.dukops, "DUKOPS");
+    setTimeout(() => { container.style.transform = ''; }, 300);
+  });
+  
+  // SHOW
+  const btnShow = document.getElementById('btnShow');
+  btnShow.addEventListener('click', () => {
+    const container = btnShow.querySelector('.logo-container');
+    container.style.transform = 'scale(0.95)';
+    openUrl(URLS.show, "SHOW");
+    setTimeout(() => { container.style.transform = ''; }, 300);
+  });
+  
+  // GOOGLE DRIVE
+  const btnDrive = document.getElementById('btnDrive');
+  btnDrive.addEventListener('click', () => {
+    const container = btnDrive.querySelector('.logo-container');
+    container.style.transform = 'scale(0.95)';
+    openUrl(URLS.drive, "GOOGLE DRIVE");
+    setTimeout(() => { container.style.transform = ''; }, 300);
+  });
+  
+  // PEMETAAN LAHAN
+  const btnPemetaan = document.getElementById('btnPemetaan');
+  btnPemetaan.addEventListener('click', () => {
+    const container = btnPemetaan.querySelector('.logo-container');
+    container.style.transform = 'scale(0.95)';
+    openUrl(URLS.pemetaan, "PEMETAAN LAHAN");
+    setTimeout(() => { container.style.transform = ''; }, 300);
+  });
+  
+  // PORTAL KDKMP
+  const btnPortal = document.getElementById('btnPortal');
+  btnPortal.addEventListener('click', () => {
+    const container = btnPortal.querySelector('.logo-container');
+    container.style.transform = 'scale(0.95)';
+    openUrl(URLS.portal, "PORTAL KDKMP");
+    setTimeout(() => { container.style.transform = ''; }, 300);
+  });
+  
+  // DAPERS
+  const btnDapers = document.getElementById('btnDapers');
+  btnDapers.addEventListener('click', () => {
+    const container = btnDapers.querySelector('.logo-container');
+    container.style.transform = 'scale(0.95)';
+    openUrl(URLS.dapers, "DAPERS");
+    setTimeout(() => { container.style.transform = ''; }, 300);
+  });
+}
 
-function setupControlButtons() {
+// Control Buttons
+function setupControls() {
   infoBtn.addEventListener('click', () => {
-    showToast('UDAYANA PORTAL v2.5.0 - Akses cepat sistem (dengan Preview Pura & Lainnya → RH)', 4000);
+    showToastMessage('UDAYANA PORTAL v2.7 | Tombol KORAMIL menggunakan PIN: 321', 5000);
   });
   
   fullscreenBtn.addEventListener('click', () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen();
       fullscreenBtn.innerHTML = '✕';
-      fullscreenBtn.title = 'Keluar Layar Penuh';
     } else {
       document.exitFullscreen();
       fullscreenBtn.innerHTML = '⛶';
-      fullscreenBtn.title = 'Layar Penuh';
     }
   });
-  
-  updateInfoBtn.addEventListener('click', () => {
-    showUpdateModal();
-  });
-  
-  laterBtn.addEventListener('click', () => {
-    hideUpdateModal();
-    showToast('Update akan diingatkan nanti', 2000);
-    localStorage.setItem('updateLater', 'true');
-  });
-  
-  updateNowBtn.addEventListener('click', () => {
-    simulateUpdate();
-  });
-  
-  updateOverlay.addEventListener('click', () => {
-    hideUpdateModal();
-  });
 }
 
-// ===== PWA FUNCTIONALITY =====
-
-async function registerServiceWorker() {
-  if ('serviceWorker' in navigator) {
-    try {
-      const swCode = `
-        const CACHE_NAME = 'udayana-portal-v2.5.0';
-        self.addEventListener('install', (event) => { self.skipWaiting(); });
-        self.addEventListener('activate', (event) => { event.waitUntil(clients.claim()); });
-        self.addEventListener('fetch', (event) => {
-          event.respondWith(
-            fetch(event.request)
-              .catch(() => new Response('Udayana Portal - Mode Offline', {
-                headers: { 'Content-Type': 'text/html' }
-              }))
-          );
-        });
-      `;
-      const blob = new Blob([swCode], { type: 'application/javascript' });
-      const swUrl = URL.createObjectURL(blob);
-      const registration = await navigator.serviceWorker.register(swUrl);
-      console.log('Service Worker registered:', registration);
-      
-      registration.addEventListener('updatefound', () => {
-        showToast('Update tersedia! 🚀', 3000);
-      });
-      return registration;
-    } catch (error) {
-      console.error('Service Worker registration failed:', error);
-    }
-  }
-  return null;
-}
-
-function setupPWAInstall() {
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    setTimeout(() => {
-      if (deferredPrompt) {
-        installBtn.style.display = 'block';
-        installBtn.addEventListener('click', async () => {
-          if (!deferredPrompt) return;
-          deferredPrompt.prompt();
-          const { outcome } = await deferredPrompt.userChoice;
-          if (outcome === 'accepted') {
-            installBtn.style.display = 'none';
-            showToast('Aplikasi sedang diinstal...', 2000);
-          } else {
-            showToast('Instalasi dibatalkan', 2000);
-          }
-          deferredPrompt = null;
-        });
-      }
-    }, 3000);
-  });
-  
-  window.addEventListener('appinstalled', () => {
-    installBtn.style.display = 'none';
-    showToast('Aplikasi berhasil diinstal! 🎉', 3000);
-  });
-}
-
-function createWebAppManifest() {
-  const manifest = {
-    "name": "Udayana Portal",
-    "short_name": "SUKASADA05",
-    "description": "Portal Akses Cepat Kodam Udayana v2.5.0 + Preview Pura & RH",
-    "start_url": ".",
-    "display": "standalone",
-    "background_color": "#0a1525",
-    "theme_color": "#000000",
-    "orientation": "portrait",
-    "icons": [
-      { "src": "/favicon-32x32.png", "sizes": "32x32", "type": "image/png" },
-      { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
-    ]
-  };
-  const manifestElement = document.createElement('link');
-  manifestElement.rel = 'manifest';
-  manifestElement.href = 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify(manifest));
-  document.head.appendChild(manifestElement);
-}
-
-// ===== INITIALIZATION =====
-
-async function initializeApp() {
-  console.log('🚀 Initializing Udayana Portal v2.5.0 + Preview Pura & RH...');
+// Initialize App with Loading
+function initializeApp() {
+  console.log('🚀 Udayana Portal - PIN hanya untuk tombol KORAMIL (321)');
   
   let progress = 0;
   const loadingInterval = setInterval(() => {
-    progress += Math.random() * 15 + 10;
+    progress += Math.random() * 20 + 10;
     if (progress > 100) progress = 100;
     updateLoadingProgress(progress);
     if (progress >= 100) {
       clearInterval(loadingInterval);
       setTimeout(() => {
-        loadingOverlay.style.opacity = '0';
-        setTimeout(() => {
-          loadingOverlay.classList.add('hidden');
-          showToast('Portal siap digunakan! PREVIEW PURA & LAINNYA (RH) tersedia', 2000);
-        }, 500);
+        loadingOverlay.classList.add('hidden');
+        showToastMessage('Portal siap! Klik KORAMIL dan masukkan PIN 321', 3000);
       }, 500);
     }
   }, 150);
   
+  setupKoramilNumpad();
   setupButtons();
-  setupControlButtons();
-  createWebAppManifest();
-  setupPWAInstall();
-  await registerServiceWorker();
-  checkForUpdates();
+  setupControls();
   
-  if (window.matchMedia('(display-mode: standalone)').matches) {
-    console.log('📱 Running as installed PWA');
-    showToast('Mode aplikasi aktif v2.5.0', 2000);
-  }
-  
-  console.log('✅ Udayana Portal v2.5.0 initialized successfully');
+  // Event untuk close modal
+  pinCloseBtn.addEventListener('click', hidePinModal);
+  pinConfirmBtn.addEventListener('click', verifyPinAndOpen);
+  pinModalOverlay.addEventListener('click', (e) => {
+    if (e.target === pinModalOverlay) hidePinModal();
+  });
 }
 
-// ===== START APPLICATION =====
-
+// Start
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initializeApp);
 } else {
   initializeApp();
 }
 
-window.addEventListener('orientationchange', () => {
-  setTimeout(() => window.dispatchEvent(new Event('resize')), 300);
-});
-
-window.addEventListener('online', () => showToast('Koneksi internet tersedia', 2000));
-window.addEventListener('offline', () => showToast('Mode offline aktif', 3000));
-
-document.addEventListener('keydown', (e) => {
-  if ((e.ctrlKey || e.metaKey) && e.key >= '1' && e.key <= '7') {
-    e.preventDefault();
-    const buttonId = `btn${e.key}`;
-    const button = document.getElementById(buttonId);
-    if (button) button.click();
-  }
-  if (e.key === 'F11') { e.preventDefault(); fullscreenBtn.click(); }
-  if (e.key === 'F5') { e.preventDefault(); showToast('Memperbarui halaman...', 1000); setTimeout(() => location.reload(), 100); }
-  if (e.key === 'u' || e.key === 'U') { e.preventDefault(); showUpdateModal(); }
-});
-
-window.addEventListener('beforeunload', () => {
-  if (updateInterval) clearInterval(updateInterval);
+// Fullscreen change event
+document.addEventListener('fullscreenchange', () => {
+  if (document.fullscreenElement) fullscreenBtn.innerHTML = '✕';
+  else fullscreenBtn.innerHTML = '⛶';
 });
 </script>
 </body>
